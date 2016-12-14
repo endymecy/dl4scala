@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>dl4scala-scaleout</artifactId>
+        <groupId>org.dl4scala</groupId>
+        <version>0.7.2-SNAPSHOT</version>
+        <relativePath>../dl4scala-scaleout/pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>dl4scala-graph</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.dl4scala</groupId>
+            <artifactId>dl4scala-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>
