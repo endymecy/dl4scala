@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
 */
 public class MLPMnistTwoLayerExample {
 
-    private static Logger log = LoggerFactory.getLogger(MLPMnistSingleLayerExample.class);
+    private static Logger log = LoggerFactory.getLogger(MLPMnistTwoLayerExample.class);
 
     public static void main(String[] args) throws Exception {
         //number of rows and columns in the input pictures
@@ -52,7 +52,7 @@ public class MLPMnistTwoLayerExample {
         int outputNum = 10; // number of output classes
         int batchSize = 64; // batch size for each epoch
         int rngSeed = 123; // random number seed for reproducibility
-        int numEpochs = 15; // number of epochs to perform
+        int numEpochs = 1; // number of epochs to perform
         double rate = 0.0015; // learning rate
 
         //Get the DataSetIterators:
