@@ -103,67 +103,6 @@
 
     <profiles>
         <profile>
-            <id>testresources</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.dl4scala</groupId>
-                    <artifactId>dl4scala-test-resources</artifactId>
-                    <version>${project.version}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <!-- For running unit tests with nd4j-native: "mvn clean test -P test-nd4j-native"
-             Note that this excludes DL4J-cuda -->
-        <profile>
-            <id>test-nd4j-native</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.dl4scala</groupId>
-                    <artifactId>dl4scala-test-resources</artifactId>
-                    <version>${project.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.nd4j</groupId>
-                    <artifactId>nd4j-native</artifactId>
-                    <version>${nd4j.version}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-        </profile>
-
-        <!-- For running unit tests with nd4j-cuda-8.0: "mvn clean test -P test-nd4j-cuda-8.0" -->
-        <profile>
-            <id>test-nd4j-cuda-8.0</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>org.dl4scala</groupId>
-                    <artifactId>dl4scala-test-resources</artifactId>
-                    <version>${project.version}</version>
-                    <scope>test</scope>
-                </dependency>
-                <dependency>
-                    <groupId>org.nd4j</groupId>
-                    <artifactId>nd4j-cuda-8.0</artifactId>
-                    <version>${nd4j.version}</version>
-                    <scope>test</scope>
-                </dependency>
-            </dependencies>
-            <!-- Default to ALL modules here, unlike nd4j-native -->
-        </profile>
-
-        <profile>
             <id>qa</id>
             <build>
                 <plugins>
@@ -248,12 +187,7 @@
             </build>
         </profile>
     </profiles>
-    <scm>
-        <connection>scm:git:git@github.com:deeplearning4j/deeplearning4j.git</connection>
-        <developerConnection>scm:git:git@github.com:deeplearning4j/deeplearning4j.git</developerConnection>
-        <url>git@github.com:deeplearning4j/deeplearning4j.git</url>
-        <tag>HEAD</tag>
-    </scm>
+
 
     <modules>
         <module>dl4scala-core</module>
@@ -263,84 +197,6 @@
         <module>dl4scala-nn</module>
         <module>dl4scala-modelimport</module>
     </modules>
-
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <developers>
-        <developer>
-            <id>agibsonccc</id>
-            <name>Adam Gibson</name>
-            <email>adam@skymind.io</email>
-        </developer>
-        <developer>
-            <id>chrisvnicholson</id>
-            <name>Chris Nicholson</name>
-            <email>chris@skymind.io</email>
-        </developer>
-        <developer>
-            <id>jpatanooga</id>
-            <name>Josh Patterson</name>
-        </developer>
-        <developer>
-            <id>AlexDBlack</id>
-            <name>Alex Black</name>
-        </developer>
-        <developer>
-            <id>nyghtowl</id>
-            <name>Melanie Warrick</name>
-        </developer>
-        <developer>
-            <id>raver119</id>
-            <name>raver119</name>
-        </developer>
-        <developer>
-            <id>saudet</id>
-            <name>Samuel Audet</name>
-        </developer>
-        <developer>
-            <id>eraly</id>
-            <name>Susan Eraly</name>
-        </developer>
-        <developer>
-            <id>kepricon</id>
-            <name>Daehyun Kim</name>
-        </developer>
-        <!--current & previous core contributers and company developers-->
-        <developer>
-            <id>smarthi</id>
-            <name>Suneel Marthi</name>
-        </developer>
-        <developer>
-            <id>taisukeoe</id>
-            <name>Taisuke Oe</name>
-        </developer>
-        <developer>
-            <id>treo</id>
-            <name>Paul Dubs</name>
-        </developer>
-        <developer>
-            <id>EronWright</id>
-            <name>Eron Wright</name>
-        </developer>
-        <developer>
-            <id>jyt109</id>
-            <name>Jeffrey Tang</name>
-        </developer>
-        <developer>
-            <id>sonaliii</id>
-            <name>Sonali Dayal</name>
-        </developer>
-        <developer>
-            <id>emmjaykay</id>
-            <name>emmjaykay</name>
-        </developer>
-    </developers>
 
     <build>
         <extensions>
