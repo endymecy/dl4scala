@@ -196,6 +196,7 @@
         <module>dl4scala-nlp-parent</module>
         <module>dl4scala-nn</module>
         <module>dl4scala-modelimport</module>
+        <module>dl4scala-examples</module>
     </modules>
 
     <build>
