@@ -257,8 +257,6 @@
 
     <modules>
         <module>dl4scala-core</module>
-        <module>dl4scala-scaleout</module>
-        <module>dl4scala-ui-parent</module>
         <module>dl4scala-graph</module>
         <module>dl4scala-cuda</module>
         <module>dl4scala-nlp-parent</module>
