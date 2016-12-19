@@ -1,7 +1,7 @@
 package org.dl4scala.examples.feedforward.mnist
 
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator
-import org.deeplearning4j.datasets.iterator.impl.MnistDataSetIterator
+import org.dl4scala.datasets.iterator.impl.MnistDataSetIterator
 import org.deeplearning4j.eval.Evaluation
 import org.deeplearning4j.examples.feedforward.mnist.MLPMnistTwoLayerExample
 import org.deeplearning4j.nn.api.OptimizationAlgorithm
