@@ -12,15 +12,13 @@ import org.slf4j.{Logger, LoggerFactory}
 /**
   * Created by endy on 16-12-19.
   */
-abstract class BaseDataFetcher extends DataSetFetcher{
+abstract class BaseDataFetcher(var cursor: Int = 0,
+                               var inputColumns: Int = -1,
+                               var totalExamples: Int = 0,
+                               var curr: DataSet = null,
+                               var numOutcomes: Int = -1) extends DataSetFetcher{
 
   protected val log: Logger = LoggerFactory.getLogger(classOf[BaseDataFetcher])
-
-  var cursorVar: Int = 0
-  var numOutcomesVar: Int = -1
-  var inputColumnsVar: Int = -1
-  var currVar: DataSet = _
-  var totalExamplesVar: Int = 0
 
   /**
     * Creates a feature vector
@@ -28,7 +26,7 @@ abstract class BaseDataFetcher extends DataSetFetcher{
     * @param numRows the number of examples
     * @return a feature vector
     */
-  protected def createInputMatrix(numRows: Int): INDArray = Nd4j.create(numRows, inputColumnsVar)
+  protected def createInputMatrix(numRows: Int): INDArray = Nd4j.create(numRows, inputColumns)
 
   /**
     * Creates an output label matrix
@@ -38,9 +36,9 @@ abstract class BaseDataFetcher extends DataSetFetcher{
     *         index specified by outcomeLabel
     */
   protected def createOutputVector(outcomeLabel: Int): INDArray =
-      FeatureUtil.toOutcomeVector(outcomeLabel, numOutcomesVar)
+      FeatureUtil.toOutcomeVector(outcomeLabel, numOutcomes)
 
-  protected def createOutputMatrix(numRows: Int): INDArray = Nd4j.create(numRows, numOutcomesVar)
+  protected def createOutputMatrix(numRows: Int): INDArray = Nd4j.create(numRows, numOutcomes)
 
   /**
     * Initializes this data transform fetcher from the passed in datasets
@@ -60,7 +58,7 @@ abstract class BaseDataFetcher extends DataSetFetcher{
       labels.putRow(i, label)
     }
 
-    currVar = new DataSet(inputs, labels)
+    curr = new DataSet(inputs, labels)
     examples.clear()
   }
 
@@ -68,26 +66,18 @@ abstract class BaseDataFetcher extends DataSetFetcher{
     * Sets a list of label names to the curr dataset
     */
   def setLabelNames(names: util.List[String]) {
-    currVar.setLabelNames(names)
+    curr.setLabelNames(names)
   }
 
-  def getLabelName(i: Int): String = currVar.getLabelNames.get(i)
+  def getLabelName(i: Int): String = curr.getLabelNamesList.get(i)
 
-  override def hasMore: Boolean = cursorVar < totalExamplesVar
+  override def hasMore: Boolean = cursor < totalExamples
 
-  override def next: DataSet = currVar
+  override def next: DataSet = curr
 
-  override def totalOutcomes: Int = numOutcomesVar
-
-  override def inputColumns: Int = inputColumnsVar
-
-  override def totalExamples: Int = totalExamplesVar
+  override def totalOutcomes: Int = numOutcomes
 
   override def reset() {
-    cursorVar = 0
-  }
-
-  override def cursor: Int = {
-    cursorVar
+    cursor = 0
   }
 }

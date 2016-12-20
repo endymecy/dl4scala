@@ -9,8 +9,11 @@ import java.io.IOException
   *
   */
 @throws[IOException]
-class MnistDataSetIterator(override val batch: Int, override val numExamples: Int,
-                           val binarize: Boolean, val train: Boolean, val shuffle: Boolean,
+class MnistDataSetIterator(override val batch: Int,
+                           override val numExamples: Int,
+                           val binarize: Boolean,
+                           val train: Boolean,
+                           val shuffle: Boolean,
                            val rngSeed: Long) extends
   BaseDatasetIterator(batch, numExamples, new MnistDataFetcher(binarize, train, shuffle, rngSeed)){
 
@@ -31,7 +34,8 @@ class MnistDataSetIterator(override val batch: Int, override val numExamples: In
     this(batch, numExamples, false)
   }
 
-  /** Constructor to get the full MNIST data set (either test or train sets) without binarization (i.e., just normalization
+  /** Constructor to get the full MNIST data set (either test or train sets) without binarization
+    *  (i.e., just normalization
     * into range of 0 to 1), with shuffling based on a random seed.
     *
     * @param batchSize

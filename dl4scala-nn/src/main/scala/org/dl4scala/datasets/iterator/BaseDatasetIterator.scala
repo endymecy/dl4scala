@@ -13,7 +13,7 @@ import java.util
   *
   */
 class BaseDatasetIterator(val batch: Int, val numExamples: Int, val fetcher: BaseDataFetcher)
-  extends DataSetIterator {
+                         extends DataSetIterator {
 
   private val num: Int = if (numExamples < 0) fetcher.totalExamples else numExamples
 

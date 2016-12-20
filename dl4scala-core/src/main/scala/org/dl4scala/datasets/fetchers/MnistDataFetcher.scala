@@ -14,32 +14,32 @@ import org.nd4j.linalg.factory.Nd4j
 /**
   * Created by endy on 16-12-19.
   */
-class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngSeed: Long)
-      extends BaseDataFetcher {
+class MnistDataFetcher(val binarize: Boolean,
+                       val train: Boolean,
+                       val shuffle: Boolean,
+                       val rngSeed: Long) extends BaseDataFetcher() {
 
-  protected val TEMP_ROOT: String = System.getProperty("user.home")
-  protected val MNIST_ROOT: String = TEMP_ROOT + File.separator + "MNIST" + File.separator
-
-  var man: MnistManager = _
-  var order: Array[Int] = _
-  var rng: util.Random = _
+  private val TEMP_ROOT: String = System.getProperty("user.home")
+  private val MNIST_ROOT: String = TEMP_ROOT + File.separator + "MNIST" + File.separator
+  private var man: MnistManager = _
+  private var order: Array[Int] = _
+  private var rng: util.Random = _
 
   init()
 
   def init(): Unit = {
     if (!mnistExists) new MnistFetcher().downloadAndUntar
-    var images: String = null
-    var labels: String = null
-    if (train) {
-      images = MNIST_ROOT + MnistFetcher.trainingFilesFilename_unzipped
-      labels = MNIST_ROOT + MnistFetcher.trainingFileLabelsFilename_unzipped
-      totalExamplesVar = MnistDataFetcher.NUM_EXAMPLES
+
+    val (images, labels) = if (train) {
+      totalExamples = MnistDataFetcher.NUM_EXAMPLES
+      (MNIST_ROOT + MnistFetcher.trainingFilesFilename_unzipped,
+        MNIST_ROOT + MnistFetcher.trainingFileLabelsFilename_unzipped)
+    } else {
+      totalExamples = MnistDataFetcher.NUM_EXAMPLES_TEST
+      (MNIST_ROOT + MnistFetcher.testFilesFilename_unzipped,
+        MNIST_ROOT + MnistFetcher.testFileLabelsFilename_unzipped)
     }
-    else {
-      images = MNIST_ROOT + MnistFetcher.testFilesFilename_unzipped
-      labels = MNIST_ROOT + MnistFetcher.testFileLabelsFilename_unzipped
-      totalExamplesVar = MnistDataFetcher.NUM_EXAMPLES_TEST
-    }
+
     try
       man = new MnistManager(images, labels, train)
     catch {
@@ -48,31 +48,35 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
         new MnistFetcher().downloadAndUntar
         man = new MnistManager(images, labels, train)
     }
-    numOutcomesVar = 10
-    cursorVar = 0
-    inputColumnsVar = man.getImages.getEntryLength
-    order = if (train) new Array[Int](MnistDataFetcher.NUM_EXAMPLES) else new Array[Int](MnistDataFetcher.NUM_EXAMPLES_TEST)
+    numOutcomes = 10
+    cursor = 0
+    inputColumns = man.getImages.getEntryLength
+
+    order = if (train)
+      new Array[Int](MnistDataFetcher.NUM_EXAMPLES)
+    else new Array[Int](MnistDataFetcher.NUM_EXAMPLES_TEST)
+
     order.indices.foreach(i => order(i) = i)
     rng = new util.Random(rngSeed)
     reset() //Shuffle order
   }
 
-
   def this(binarize: Boolean) {
     this(binarize, true, true, System.currentTimeMillis)
   }
 
+  def this() = this(true)
+
   private def mnistExists: Boolean = {
-    if (!new File(MNIST_ROOT, MnistFetcher.trainingFilesFilename_unzipped).exists()) false
+    if (!new File(MNIST_ROOT, MnistFetcher.trainingFilesFilename_unzipped).exists())
+      false
     else if (!new File(MNIST_ROOT, MnistFetcher.trainingFileLabelsFilename_unzipped).exists())
       false
-    else if (!new File(MNIST_ROOT, MnistFetcher.testFilesFilename_unzipped).exists()) false
-    else if (!new File(MNIST_ROOT, MnistFetcher.testFileLabelsFilename_unzipped).exists()) false
+    else if (!new File(MNIST_ROOT, MnistFetcher.testFilesFilename_unzipped).exists())
+      false
+    else if (!new File(MNIST_ROOT, MnistFetcher.testFileLabelsFilename_unzipped).exists())
+      false
     else true
-  }
-
-  def this() {
-    this(true)
   }
 
   override def fetch(numExamples: Int): Unit = {
@@ -84,23 +88,22 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
     var actualExamples: Int = 0
     var i: Int = 0
     while (i < numExamples && hasMore) {
-      val img: Array[Byte] = man.readImageUnsafe(order(cursorVar))
-      val label: Int = man.readLabel(order(cursorVar))
+      val img: Array[Byte] = man.readImageUnsafe(order(cursor))
+      val label: Int = man.readLabel(order(cursor))
       val featureVec: Array[Float] = new Array[Float](img.length)
       featureData(actualExamples) = featureVec
       labelData(actualExamples) = new Array[Float](10)
       labelData(actualExamples)(label) = 1.0f
-      var j: Int = 0
-      while (j < img.length) {
+
+      img.indices.foreach{j =>
         val v: Float = img(j).toInt & 0xFF //byte is loaded as signed -> convert to unsigned
         if (binarize) if (v > 30.0f) featureVec(j) = 1.0f
         else featureVec(j) = 0.0f
         else featureVec(j) = v / 255.0f
-        j += 1
       }
       actualExamples += 1
       i += 1
-      cursorVar += 1
+      cursor += 1
     }
 
     if (actualExamples < numExamples) {
@@ -110,22 +113,21 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
 
     val features: INDArray = Nd4j.create(featureData)
     val labels: INDArray = Nd4j.create(labelData)
-    currVar = new DataSet(features, labels)
+    curr = new DataSet(features, labels)
   }
 
   override def reset() {
-    cursorVar = 0
+    cursor = 0
     if (shuffle) MathUtils.shuffleArray(order, rng)
   }
 
-  override def next: DataSet = {
-    val next: DataSet = super.next
-    next
-  }
+  override def next: DataSet = super.next
+
 }
 
 object MnistDataFetcher {
   val NUM_EXAMPLES: Int = 60000
   val NUM_EXAMPLES_TEST: Int = 10000
+
 }
 
