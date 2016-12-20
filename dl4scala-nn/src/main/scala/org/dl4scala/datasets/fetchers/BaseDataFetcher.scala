@@ -47,7 +47,7 @@ abstract class BaseDataFetcher(var cursor: Int = 0,
     */
   protected def initializeCurrFromList(examples: util.List[DataSet]) {
     if (examples.isEmpty) log.warn("Warning: empty dataset from the fetcher")
-    //currVar = _
+    curr = null
     val inputs: INDArray = createInputMatrix(examples.size)
     val labels: INDArray = createOutputMatrix(examples.size)
 

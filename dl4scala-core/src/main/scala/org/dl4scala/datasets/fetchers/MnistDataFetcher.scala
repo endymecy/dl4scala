@@ -4,8 +4,8 @@ import java.io.File
 import java.util
 
 import org.apache.commons.io.FileUtils
-import org.deeplearning4j.base.MnistFetcher
-import org.deeplearning4j.datasets.mnist.MnistManager
+import org.dl4scala.base.MnistFetcher
+import org.dl4scala.datasets.mnist.MnistManager
 import org.deeplearning4j.util.MathUtils
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.dataset.DataSet
@@ -17,7 +17,7 @@ import org.nd4j.linalg.factory.Nd4j
 class MnistDataFetcher(val binarize: Boolean,
                        val train: Boolean,
                        val shuffle: Boolean,
-                       val rngSeed: Long) extends BaseDataFetcher() {
+                       val rngSeed: Long) extends BaseDataFetcher {
 
   private val TEMP_ROOT: String = System.getProperty("user.home")
   private val MNIST_ROOT: String = TEMP_ROOT + File.separator + "MNIST" + File.separator
