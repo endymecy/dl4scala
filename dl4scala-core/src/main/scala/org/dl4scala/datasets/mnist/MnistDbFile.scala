@@ -18,7 +18,7 @@ abstract class MnistDbFile(name: String, mode: String) extends RandomAccessFile(
     *
     * @return long
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def getCurrentIndex: Long = (getFilePointer - getHeaderSize) / getEntryLength + 1
 
   /**
@@ -53,7 +53,7 @@ abstract class MnistDbFile(name: String, mode: String) extends RandomAccessFile(
     * Move to the next entry.
     *
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def next() {
     if (getCurrentIndex < count) skipBytes(getEntryLength)
   }
@@ -61,7 +61,7 @@ abstract class MnistDbFile(name: String, mode: String) extends RandomAccessFile(
   /**
     * Move to the previous entry.
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def prev() {
     if (getCurrentIndex > 0) seek(getFilePointer - getEntryLength)
   }

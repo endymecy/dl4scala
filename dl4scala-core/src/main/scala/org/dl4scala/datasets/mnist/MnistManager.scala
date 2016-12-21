@@ -35,7 +35,7 @@ class MnistManager(imagesFile: String, labelsFile: String, train: Boolean) {
     * @return matrix
     * @throws IOException
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def readImage: Array[Array[Int]] = {
     if (images == null) throw new IllegalStateException("Images file not initialized.")
     images.readImage
@@ -59,7 +59,7 @@ class MnistManager(imagesFile: String, labelsFile: String, train: Boolean) {
     * @return int
     * @throws IOException throw Exception
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def readLabel: Int = {
     if (labels == null) throw new IllegalStateException("labels file not initialized.")
     labels.readLabel
@@ -116,7 +116,7 @@ object MnistManager {
     * @param ppmFileName
     * @throws IOException
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def writeImageToPpm(image: Array[Array[Int]], ppmFileName: String) {
       val ppmOut: BufferedWriter = new BufferedWriter(new FileWriter(ppmFileName))
       val rows: Int = image.length

@@ -8,7 +8,7 @@ import java.io.IOException
   * Mnist data applyTransformToDestination iterator.
   *
   */
-@throws[IOException]
+@throws(classOf[IOException])
 class MnistDataSetIterator(override val batch: Int,
                            override val numExamples: Int,
                            val binarize: Boolean,
@@ -24,12 +24,12 @@ class MnistDataSetIterator(override val batch: Int,
     * @param binarize    whether to binarize mnist or not
     * @throws IOException
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def this(batch: Int, numExamples: Int, binarize: Boolean) {
     this(batch, numExamples, binarize, true, false, 0)
   }
 
-  @throws[IOException]
+  @throws(classOf[IOException])
   def this(batch: Int, numExamples: Int) {
     this(batch, numExamples, false)
   }
@@ -42,7 +42,7 @@ class MnistDataSetIterator(override val batch: Int,
     * @param train
     * @throws IOException
     */
-  @throws[IOException]
+  @throws(classOf[IOException])
   def this(batchSize: Int, train: Boolean, seed: Int) {
     this(batchSize, if (train) MnistDataFetcher.NUM_EXAMPLES else MnistDataFetcher.NUM_EXAMPLES_TEST,
       false, train, true, seed)

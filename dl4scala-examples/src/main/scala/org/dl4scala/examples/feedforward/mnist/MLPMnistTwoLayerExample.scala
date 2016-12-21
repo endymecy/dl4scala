@@ -3,7 +3,6 @@ package org.dl4scala.examples.feedforward.mnist
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator
 import org.dl4scala.datasets.iterator.impl.MnistDataSetIterator
 import org.deeplearning4j.eval.Evaluation
-import org.deeplearning4j.examples.feedforward.mnist.MLPMnistTwoLayerExample
 import org.deeplearning4j.nn.api.OptimizationAlgorithm
 import org.deeplearning4j.nn.conf.MultiLayerConfiguration
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration
@@ -20,7 +19,7 @@ import org.slf4j.{Logger, LoggerFactory}
 
 object MLPMnistTwoLayerExample {
 
-  private val log: Logger = LoggerFactory.getLogger(classOf[MLPMnistTwoLayerExample])
+  private val log: Logger = LoggerFactory.getLogger(MLPMnistTwoLayerExample.getClass)
 
   def main(args: scala.Array[String]): Unit = {
     //number of rows and columns in the input pictures
