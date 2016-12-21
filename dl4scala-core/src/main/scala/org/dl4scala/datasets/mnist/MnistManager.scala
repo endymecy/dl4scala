@@ -3,7 +3,6 @@ package org.dl4scala.datasets.mnist
 import java.io.{BufferedWriter, FileWriter, IOException}
 
 import org.dl4scala.datasets.fetchers.MnistDataFetcher
-import org.deeplearning4j.datasets.mnist.{MnistImageFile, MnistLabelFile}
 
 /**
   * Created by endy on 16-12-20.
@@ -38,7 +37,7 @@ class MnistManager(imagesFile: String, labelsFile: String, train: Boolean) {
   @throws(classOf[IOException])
   def readImage: Array[Array[Int]] = {
     if (images == null) throw new IllegalStateException("Images file not initialized.")
-    images.readImage
+    else images.readImage
   }
 
   def readImageUnsafe(i: Int): Array[Byte] = imagesArr(i)
@@ -68,14 +67,14 @@ class MnistManager(imagesFile: String, labelsFile: String, train: Boolean) {
   def readLabel(i: Int): Int = labelsArr(i)
 
   /**
-    * Get the underlying images file as {@link MnistImageFile}.
+    * Get the underlying images file.
     *
     * @return { @link MnistImageFile}.
     */
   def getImages: MnistImageFile = images
 
   /**
-    * Get the underlying labels file as {@link MnistLabelFile}.
+    * Get the underlying labels file.
     *
     * @return { @link MnistLabelFile}.
     */
@@ -89,8 +88,7 @@ class MnistManager(imagesFile: String, labelsFile: String, train: Boolean) {
       try
         images.close()
       catch {
-        case e: IOException => {
-        }
+        case e: IOException => //
       }
       images = null
     }
@@ -98,8 +96,7 @@ class MnistManager(imagesFile: String, labelsFile: String, train: Boolean) {
       try
         labels.close()
       catch {
-        case e: IOException => {
-        }
+        case e: IOException => //
       }
       labels = null
     }

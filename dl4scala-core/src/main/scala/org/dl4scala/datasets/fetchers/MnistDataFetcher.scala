@@ -28,7 +28,7 @@ class MnistDataFetcher(val binarize: Boolean,
   init()
 
   def init(): Unit = {
-    if (!mnistExists) new MnistFetcher().downloadAndUntar
+    if (!mnistExists) MnistFetcher.downloadAndUntar
 
     val (images, labels) = if (train) {
       totalExamples = MnistDataFetcher.NUM_EXAMPLES
@@ -45,7 +45,7 @@ class MnistDataFetcher(val binarize: Boolean,
     catch {
       case e: Exception =>
         FileUtils.deleteDirectory(new File(MNIST_ROOT))
-        new MnistFetcher().downloadAndUntar
+        MnistFetcher.downloadAndUntar
         man = new MnistManager(images, labels, train)
     }
     numOutcomes = 10

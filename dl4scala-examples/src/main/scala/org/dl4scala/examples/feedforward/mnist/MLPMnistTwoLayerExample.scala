@@ -15,11 +15,10 @@ import org.deeplearning4j.optimize.listeners.ScoreIterationListener
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction
-import org.slf4j.{Logger, LoggerFactory}
+import com.typesafe.scalalogging.LazyLogging
 
-object MLPMnistTwoLayerExample {
 
-  private val log: Logger = LoggerFactory.getLogger(MLPMnistTwoLayerExample.getClass)
+object MLPMnistTwoLayerExample extends LazyLogging {
 
   def main(args: scala.Array[String]): Unit = {
     //number of rows and columns in the input pictures
@@ -35,7 +34,7 @@ object MLPMnistTwoLayerExample {
     val mnistTrain: DataSetIterator = new MnistDataSetIterator(batchSize, true, rngSeed)
     val mnistTest: DataSetIterator = new MnistDataSetIterator(batchSize, false, rngSeed)
 
-    log.info("Build model....")
+    logger.info("Build model....")
 
     val conf: MultiLayerConfiguration = new NeuralNetConfiguration.Builder()
         .seed(rngSeed)
@@ -56,21 +55,21 @@ object MLPMnistTwoLayerExample {
     val model: MultiLayerNetwork = new MultiLayerNetwork(conf)
     model.init()
     model.setListeners(new ScoreIterationListener(5)) //print the score with every iteration
-    log.info("Train model....")
+    logger.info("Train model....")
 
     (0 until numEpochs).foreach { i =>
-      log.info("Epoch " + i)
+      logger.info("Epoch " + i)
       model.fit(mnistTrain)
     }
 
-    log.info("Evaluate model....")
+    logger.info("Evaluate model....")
     val eval: Evaluation = new Evaluation(outputNum) //create an evaluation object with 10 possible classes
     while (mnistTest.hasNext) {
       val next: DataSet = mnistTest.next
       val output: INDArray = model.output(next.getFeatureMatrix) //get the networks prediction
       eval.eval(next.getLabels, output) //check the prediction against the true class
     }
-    log.info(eval.stats)
-    log.info("****************Example finished********************")
+    logger.info(eval.stats)
+    logger.info("****************Example finished********************")
   }
 }

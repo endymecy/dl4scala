@@ -7,7 +7,7 @@ import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.util.FeatureUtil
 import java.util
 
-import org.slf4j.{Logger, LoggerFactory}
+import com.typesafe.scalalogging.LazyLogging
 
 /**
   * Created by endy on 16-12-19.
@@ -16,9 +16,7 @@ abstract class BaseDataFetcher(var cursor: Int = 0,
                                var inputColumns: Int = -1,
                                var totalExamples: Int = 0,
                                var curr: DataSet = null,
-                               var numOutcomes: Int = -1) extends DataSetFetcher{
-
-  protected val log: Logger = LoggerFactory.getLogger(classOf[BaseDataFetcher])
+                               var numOutcomes: Int = -1) extends DataSetFetcher with LazyLogging{
 
   /**
     * Creates a feature vector
@@ -46,7 +44,7 @@ abstract class BaseDataFetcher(var cursor: Int = 0,
     * @param examples the examples to use
     */
   protected def initializeCurrFromList(examples: util.List[DataSet]) {
-    if (examples.isEmpty) log.warn("Warning: empty dataset from the fetcher")
+    if (examples.isEmpty) logger.warn("Warning: empty dataset from the fetcher")
     curr = null
     val inputs: INDArray = createInputMatrix(examples.size)
     val labels: INDArray = createOutputMatrix(examples.size)

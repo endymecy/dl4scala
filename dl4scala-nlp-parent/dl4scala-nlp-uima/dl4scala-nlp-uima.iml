@@ -53,6 +53,7 @@
     <orderEntry type="module" module-name="dl4scala-core" />
     <orderEntry type="module" module-name="dl4scala-nn" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-compress:1.8" level="project" />
+    <orderEntry type="library" name="Maven: com.typesafe.scala-logging:scala-logging_2.11:3.5.0" level="project" />
     <orderEntry type="library" name="Maven: org.tukaani:xz:1.5" level="project" />
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.12" level="project" />
     <orderEntry type="library" name="Maven: org.codehaus.woodstox:stax2-api:3.1.4" level="project" />
@@ -93,5 +94,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: ch.qos.logback:logback-classic:1.1.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: ch.qos.logback:logback-core:1.1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.8" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.11.8" level="project" />
   </component>
 </module>

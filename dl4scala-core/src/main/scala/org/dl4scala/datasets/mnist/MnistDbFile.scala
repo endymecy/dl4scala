@@ -28,14 +28,14 @@ abstract class MnistDbFile(name: String, mode: String) extends RandomAccessFile(
     * the entry index
     */
   def setCurrentIndex(curr: Long) {
-    try
-      if (curr < 0 || curr > count) throw new RuntimeException(curr + " is not in the range 0 to " + count)
-      seek(getHeaderSize + curr * getEntryLength)
+    try {
+      if (curr < 0 || curr > count)
+        throw new RuntimeException(curr + " is not in the range 0 to " + count)
 
+      seek(getHeaderSize + curr * getEntryLength)
+    }
     catch {
-      case e: IOException => {
-        throw new RuntimeException(e)
-      }
+      case e: IOException => throw new RuntimeException(e)
     }
   }
 

@@ -3,18 +3,15 @@ package org.dl4scala.util
 import java.io._
 import java.util.zip.{GZIPInputStream, ZipEntry, ZipInputStream}
 
+import com.typesafe.scalalogging.LazyLogging
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream
 import org.apache.commons.io.{FileUtils, IOUtils}
-import org.slf4j.{Logger, LoggerFactory}
 
 /**
   * Created by endy on 16-12-20.
   */
-case class ArchiveUtils()
-
-object ArchiveUtils {
-  private val log: Logger = LoggerFactory.getLogger(classOf[ArchiveUtils])
+object ArchiveUtils extends LazyLogging{
 
   /**
     * Extracts files to the specified destination
@@ -40,7 +37,7 @@ object ArchiveUtils {
       while (ze != null) {
         val fileName: String = ze.getName
         val newFile: File = new File(dest + File.separator + fileName)
-        log.info("file unzip : " + newFile.getAbsoluteFile)
+        logger.info("file unzip : " + newFile.getAbsoluteFile)
         //createComplex all non exists folders
         //else you will hit FileNotFoundException for compressed folder
         new File(newFile.getParent).mkdirs
@@ -62,7 +59,7 @@ object ArchiveUtils {
 
       /** Read the tar entries using the getNextEntry method **/
       Stream.continually(tarIn.getNextEntry).takeWhile(_ != null).foreach {entry =>
-        log.info("Extracting: " + entry.getName)
+        logger.info("Extracting: " + entry.getName)
         /** If the entry is a directory, createComplex the directory. **/
         if (entry.isDirectory) {
           val f: File = new File(dest + File.separator + entry.getName)
@@ -85,12 +82,18 @@ object ArchiveUtils {
       tarIn.close()
     }
     else if (file.endsWith(".gz")) {
+      logger.info("Extracting: " + file)
       val is2: GZIPInputStream = new GZIPInputStream(fin)
+
       val extracted: File = new File(target.getParent, target.getName.replace(".gz", ""))
+
       if (extracted.exists) extracted.delete
       extracted.createNewFile
+
       val fos: OutputStream = FileUtils.openOutputStream(extracted)
+
       IOUtils.copyLarge(is2, fos)
+
       is2.close()
       fos.flush()
       fos.close()

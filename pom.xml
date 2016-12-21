@@ -480,6 +480,14 @@
         </dependencies>
     </dependencyManagement>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.typesafe.scala-logging</groupId>
+            <artifactId>scala-logging_${scala.version}</artifactId>
+            <version>3.5.0</version>
+        </dependency>
+    </dependencies>
+
     <reporting>
         <plugins>
             <plugin>
