@@ -74,6 +74,19 @@
         <dependency>
             <groupId>org.nd4j</groupId>
             <artifactId>${nd4j.backend}</artifactId>
+            <version>${nd4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.nd4j</groupId>
+                    <artifactId>nd4j-native</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nd4j</groupId>
+            <artifactId>nd4j-native</artifactId>
+            <version>${nd4j.version}</version>
         </dependency>
 
         <!-- Core DL4J functionality -->
@@ -123,11 +136,11 @@
             <version>4.3.5</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-api</artifactId>-->
+            <!--<version>${slf4j.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
