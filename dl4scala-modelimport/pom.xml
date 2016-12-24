@@ -127,8 +127,8 @@
         </dependency>
 
         <dependency>
-            <groupId>org.dl4jscala</groupId>
-            <artifactId>dl4jscala-core</artifactId>
+            <groupId>org.dl4scala</groupId>
+            <artifactId>dl4scala-core</artifactId>
             <version>${project.version}</version>
             <scope>test</scope>
         </dependency>

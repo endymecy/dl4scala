@@ -57,7 +57,8 @@ public class MNISTAnomalyExample {
                         .build())
                 .layer(2, new DenseLayer.Builder().nIn(10).nOut(250)
                         .build())
-                .layer(3, new OutputLayer.Builder(LossFunctions.LossFunction.MSE).nIn(250).nOut(784)
+                .layer(3, new OutputLayer.Builder().nIn(250).nOut(784)
+                        .lossFunction(LossFunctions.LossFunction.MSE)
                         .build())
                 .pretrain(false).backprop(true)
                 .build();
