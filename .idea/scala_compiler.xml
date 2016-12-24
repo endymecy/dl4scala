@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="Maven 1" modules="dl4scala-ui-components,dl4scala-play_2.10,dl4scala-ui-resources,dl4scala-ui-model,dl4scala-ui-remote-iterationlisteners,dl4scala-ui-parent,dl4scala-ui_2.10,dl4scala-aws,dl4scala-streaming_2.10,dl4scala-scaleout">
+      <option name="compileOrder" value="ScalaThenJava" />
+      <option name="deprecationWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+    </profile>
+    <profile name="Maven 2" modules="dl4scala-spark-nlp_2.10,dl4scala-spark_2.10,dl4scala-spark-parameterserver_2.10,spark_2.10" />
+    <profile name="Maven 3" modules="dl4scala-nlp-korean,dl4scala-core,dl4scala-nlp-uima,dl4scala-parent,dl4scala-nlp,dl4scala-cuda-8.0,dl4scala-nn,dl4scala-nlp-parent,dl4scala-examples,dl4scala-modelimport,dl4scala-nlp-japanese,dl4scala-graph">
+      <option name="deprecationWarnings" value="true" />
+      <option name="explainTypeErrors" value="true" />
+    </profile>
+  </component>
+</project>
