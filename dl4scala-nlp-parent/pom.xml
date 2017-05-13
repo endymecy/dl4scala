@@ -14,8 +14,5 @@
 
     <modules>
         <module>dl4scala-nlp</module>
-        <module>dl4scala-nlp-uima</module>
-        <module>dl4scala-nlp-korean</module>
-        <module>dl4scala-nlp-japanese</module>
     </modules>
 </project>
