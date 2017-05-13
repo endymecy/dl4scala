@@ -3,7 +3,7 @@
     <parent>
         <artifactId>dl4scala-nlp-parent</artifactId>
         <groupId>org.dl4scala</groupId>
-        <version>0.7.2-SNAPSHOT</version>
+        <version>0.1.0T</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

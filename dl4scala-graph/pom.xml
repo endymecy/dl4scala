@@ -3,7 +3,7 @@
     <parent>
         <artifactId>dl4scala-scaleout</artifactId>
         <groupId>org.dl4scala</groupId>
-        <version>0.7.2-SNAPSHOT</version>
+        <version>0.1.0</version>
         <relativePath>../dl4scala-scaleout/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>

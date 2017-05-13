@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.dl4scala</groupId>
     <artifactId>dl4scala-nlp-parent</artifactId>
-    <version>0.7.2-SNAPSHOT</version>
+    <version>0.1.0</version>
   </parent>
   <build>
     <pluginManagement>

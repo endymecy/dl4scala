@@ -23,7 +23,7 @@
     <parent>
         <groupId>org.dl4scala</groupId>
         <artifactId>dl4scala-parent</artifactId>
-        <version>0.7.2-SNAPSHOT</version>
+        <version>0.1.0</version>
     </parent>
 
     <properties>
@@ -112,7 +112,7 @@
     </dependencies>
 
     <build>
-        <testSourceDirectory>../dl4scala-core/src/test/java</testSourceDirectory>
+        <testSourceDirectory>../dl4scala-core/src/test</testSourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>
