@@ -2,9 +2,9 @@ package org.dl4scala.examples.feedforward.classification
 
 import java.io.File
 
-import org.datavec.api.util.ClassPathResource
 import org.datavec.api.records.reader.impl.csv.CSVRecordReader
 import org.datavec.api.split.FileSplit
+import org.datavec.api.util.ClassPathResource
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator
 import org.deeplearning4j.eval.Evaluation
 import org.deeplearning4j.nn.api.OptimizationAlgorithm
@@ -21,20 +21,21 @@ import org.slf4j.{Logger, LoggerFactory}
 /**
   * Created by endy on 2017/5/13.
   */
-object MLPClassifierMoon extends App{
-  private val log: Logger = LoggerFactory.getLogger(MLPClassifierMoon.getClass)
+object MLPClassifierSaturn extends App {
+  private val log: Logger = LoggerFactory.getLogger(MLPClassifierSaturn.getClass)
 
+  Nd4j.ENFORCE_NUMERICAL_STABILITY = true
+  val batchSize = 50
   val seed = 123
   val learningRate = 0.005
-  val batchSize = 50
-  val nEpochs = 100
-
+  // Number of epochs (full passes of the data)
+  val nEpochs = 30
   val numInputs = 2
   val numOutputs = 2
   val numHiddenNodes = 20
 
-  val filenameTrain = new ClassPathResource("/classification/moon_data_train.csv").getFile.getPath
-  val filenameTest = new ClassPathResource("/classification/moon_data_eval.csv").getFile.getPath
+  val filenameTrain = new ClassPathResource("/classification/saturn_data_train.csv").getFile.getPath
+  val filenameTest = new ClassPathResource("/classification/saturn_data_eval.csv").getFile.getPath
 
   // Load the training data:
   val rr = new CSVRecordReader
@@ -69,7 +70,7 @@ object MLPClassifierMoon extends App{
   model.init()
   model.setListeners(new ScoreIterationListener(100)) // Print score every 10 parameter updates
 
-  for(i <- 0 until nEpochs){
+  for(_ <- 0 until nEpochs){
     model.fit(trainIter)
   }
 
@@ -86,10 +87,10 @@ object MLPClassifierMoon extends App{
   // Training is complete. Code that follows is for plotting the data & predictions only
 
   // Plot the data
-  val xMin = -1.5
-  val xMax = 2.5
-  val yMin = -1
-  val yMax = 1.5
+  val xMin = -15
+  val xMax = 15
+  val yMin = -15
+  val yMax = 15
 
   // Let's evaluate the predictions at every point in the x/y input space, and plot this in the background
   val nPointsPerAxis = 100
@@ -111,17 +112,17 @@ object MLPClassifierMoon extends App{
   val predictionsAtXYPoints = model.output(allXYPoints)
 
   // Get all of the training data in a single array, and plot it://Get all of the training data in a single array, and plot it:
-  rr.initialize(new FileSplit(new ClassPathResource("/classification/moon_data_train.csv").getFile))
+  rr.initialize(new FileSplit(new ClassPathResource("/classification/saturn_data_train.csv").getFile))
   rr.reset()
-  val nTrainPoints = 2000
+  val nTrainPoints = 500
   trainIter = new RecordReaderDataSetIterator(rr, nTrainPoints, 0, 2)
   var ds = trainIter.next
   PlotUtil.plotTrainingData(ds.getFeatures, ds.getLabels, allXYPoints, predictionsAtXYPoints, nPointsPerAxis)
 
   // Get test data, run the test data through the network to generate predictions, and plot those predictions:
-  rrTest.initialize(new FileSplit(new ClassPathResource("/classification/moon_data_eval.csv").getFile))
+  rrTest.initialize(new FileSplit(new ClassPathResource("/classification/saturn_data_eval.csv").getFile))
   rrTest.reset()
-  val nTestPoints = 1000
+  val nTestPoints = 100
   testIter = new RecordReaderDataSetIterator(rrTest, nTestPoints, 0, 2)
   ds = testIter.next
   val testPredicted = model.output(ds.getFeatures)
