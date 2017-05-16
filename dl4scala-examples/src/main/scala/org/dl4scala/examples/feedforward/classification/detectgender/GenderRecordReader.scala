@@ -1,24 +1,26 @@
 package org.dl4scala.examples.feedforward.classification.detectgender
 
-import org.datavec.api.records.reader.impl.LineRecordReader
 import java.io.{File, IOException}
 import java.net.URI
-import java.nio.file.{Files, Paths}
 import java.nio.charset.Charset
+import java.nio.file.{Files, Paths}
+import java.util
 
 import org.apache.commons.lang3.StringUtils
 import org.datavec.api.conf.Configuration
+import org.datavec.api.records.reader.impl.LineRecordReader
 import org.datavec.api.split.{FileSplit, InputSplit, InputStreamInputSplit}
 import org.datavec.api.writable.{DoubleWritable, Writable}
 import org.slf4j.{Logger, LoggerFactory}
 
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ArrayBuffer
 
 
 /**
   * Created by endy on 2017/5/13.
   */
-class GenderRecordReader(labels: List[String]) extends LineRecordReader {
+class GenderRecordReader(labels: ArrayBuffer[String]) extends LineRecordReader {
 
   private val log: Logger = LoggerFactory.getLogger(classOf[GenderRecordReader])
 
@@ -81,23 +83,23 @@ class GenderRecordReader(labels: List[String]) extends LineRecordReader {
     split match {
       case _: FileSplit =>
         val locations = split.locations
-        if (locations != None && locations.length > 1) {
+        if (locations.nonEmpty) {
           var longestName = ""
           var uniqueCharactersTempString = ""
           val tempNames = new ArrayBuffer[(String, ArrayBuffer[String])]()
-          for (location: URI <- locations) {
+          for (location <- locations) {
             val file = new File(location)
             val temp = this.labels.filter(line => file.getName.equals(line + ".csv"))
 
             if (temp.nonEmpty) {
               val path = Paths.get(file.getAbsolutePath)
-              val tempList = Files.readAllLines(path, Charset.defaultCharset()).toArray().map { case element: String => element.split(",")(0) }
+              val tempList = Files.readAllLines(path, Charset.defaultCharset()).toArray().map { case element: String => element.split(",")(0) }.toList
               longestName = tempList.reduce((name1, name2) => if (name1.length >= name2.length) name1 else name2)
 
               uniqueCharactersTempString = uniqueCharactersTempString + tempList.toString
               val tempPair = (temp.head, tempList.to[ArrayBuffer])
               tempNames.append(tempPair)
-            } else throw new InterruptedException("File missing for any of the specified labels")
+            }// else throw new InterruptedException("File missing for any of the specified labels")
           }
 
           this.maxLengthName = longestName.length
@@ -165,7 +167,7 @@ class GenderRecordReader(labels: List[String]) extends LineRecordReader {
     * - stores it into Writable List and returns it
     * @return
     */
-  override def next: List[Writable] =
+  override def next: util.List[Writable] =
     if (iter.hasNext) {
       val ret = new ArrayBuffer[Writable]
       val currentRecord = iter.next
@@ -175,14 +177,12 @@ class GenderRecordReader(labels: List[String]) extends LineRecordReader {
         ret.append(new DoubleWritable(temp(i).toDouble))
         i = i + 1
       }
-      ret.toList
+      ret.asJava
     } else throw new IllegalStateException("no more elements")
 
   override def hasNext: Boolean = {
-    if (iter != null) iter.hasNext
-    throw new IllegalStateException("Indeterminant state: record must not be null, or a file iterator must exist")
+    iter.hasNext
   }
-
 
   @throws(classOf[IOException])
   override def close(): Unit = {
