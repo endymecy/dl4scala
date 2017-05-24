@@ -48,7 +48,8 @@ object VaeMNISTAnomaly extends App{
   val rngSeed = 12345
   val nEpochs = 1
   // Total number of training epochs
-  val reconstructionNumSamples = 16 // Reconstruction probabilities are estimated using Monte-Carlo techniques; see An & Cho for details
+  // Reconstruction probabilities are estimated using Monte-Carlo techniques; see An & Cho for details
+  val reconstructionNumSamples = 16
 
   // MNIST data for training
   val trainIter = new MnistDataSetIterator(minibatchSize, true, rngSeed)
