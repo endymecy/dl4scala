@@ -1,7 +1,6 @@
 package org.dl4scala.examples.feedforward.classification.detectgender
 
 import java.io.{File, IOException}
-import java.net.URI
 import java.nio.charset.Charset
 import java.nio.file.{Files, Paths}
 import java.util
@@ -15,6 +14,7 @@ import org.slf4j.{Logger, LoggerFactory}
 
 import scala.collection.JavaConverters._
 import scala.collection.mutable.ArrayBuffer
+import scala.util.Random
 
 
 /**
@@ -25,7 +25,7 @@ class GenderRecordReader(labels: ArrayBuffer[String]) extends LineRecordReader {
   private val log: Logger = LoggerFactory.getLogger(classOf[GenderRecordReader])
 
   // Final list that contains actual binary data generated from person name, it also contains label (1 or 0) at the end
-  private val names = new ArrayBuffer[String]
+  private var names = new ArrayBuffer[String]
 
   // String to hold all possible alphabets from all person names in raw data
   // This String is used to convert person name to binary string seperated by comma
@@ -94,24 +94,24 @@ class GenderRecordReader(labels: ArrayBuffer[String]) extends LineRecordReader {
             if (temp.nonEmpty) {
               val path = Paths.get(file.getAbsolutePath)
               val tempList = Files.readAllLines(path, Charset.defaultCharset()).toArray().map { case element: String => element.split(",")(0) }.toList
-              longestName = tempList.reduce((name1, name2) => if (name1.length >= name2.length) name1 else name2)
+              val tempLongestName = tempList.reduce((name1, name2) => if (name1.length >= name2.length) name1 else name2)
+              longestName = if (tempLongestName.length > longestName.length) tempLongestName else longestName
 
               uniqueCharactersTempString = uniqueCharactersTempString + tempList.toString
               val tempPair = (temp.head, tempList.to[ArrayBuffer])
               tempNames.append(tempPair)
-            }// else throw new InterruptedException("File missing for any of the specified labels")
+            }
           }
 
           this.maxLengthName = longestName.length
 
-          var unique = uniqueCharactersTempString
+          val unique = uniqueCharactersTempString
+            .toLowerCase()
             .distinct
             .sorted
-            .replaceAll("\\[", "")
-            .replaceAll("\\]", "")
+            .replaceAll("\\(", "")
+            .replaceAll("\\)", "")
             .replaceAll(",", "")
-
-          if (unique.startsWith(" ")) unique = " " + unique.trim
 
           this.possibleCharacters = unique
 
@@ -151,7 +151,7 @@ class GenderRecordReader(labels: ArrayBuffer[String]) extends LineRecordReader {
 
           secondMoreTempNames.clear
           this._totalRecords = names.size
-          //Collections.shuffle(names)
+          names = Random.shuffle(names)
           this.iter = names.iterator
         }
         else throw new InterruptedException("File missing for any of the specified labels")
@@ -168,9 +168,9 @@ class GenderRecordReader(labels: ArrayBuffer[String]) extends LineRecordReader {
     * @return
     */
   override def next: util.List[Writable] =
-    if (iter.hasNext) {
+    if (this.iter.hasNext) {
       val ret = new ArrayBuffer[Writable]
-      val currentRecord = iter.next
+      val currentRecord = this.iter.next
       val temp = currentRecord.split(",")
       var i = 0
       while (i < temp.length) {
@@ -181,7 +181,7 @@ class GenderRecordReader(labels: ArrayBuffer[String]) extends LineRecordReader {
     } else throw new IllegalStateException("no more elements")
 
   override def hasNext: Boolean = {
-    iter.hasNext
+    this.iter.hasNext
   }
 
   @throws(classOf[IOException])
@@ -213,8 +213,9 @@ class GenderRecordReader(labels: ArrayBuffer[String]) extends LineRecordReader {
   private def getBinaryString(name: String, gender: Int) = {
     var binaryString = ""
     var j = 0
-    while ( j < name.length) {
-      val fs = StringUtils.leftPad(Integer.toBinaryString(this.possibleCharacters.indexOf(name.charAt(j))), 5, "0")
+    val lowerCaseName = name.toLowerCase()
+    while ( j < lowerCaseName.length) {
+      val fs = StringUtils.leftPad(Integer.toBinaryString(this.possibleCharacters.indexOf(lowerCaseName.charAt(j))), 5, "0")
       binaryString = binaryString + fs
       j = j + 1
     }

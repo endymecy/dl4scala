@@ -44,10 +44,6 @@
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>          <!-- Version set by deeplearning4j-parent dependency management -->
-        </dependency>
 
         <dependency>
             <groupId>org.nd4j</groupId>
@@ -117,12 +113,6 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>          <!-- Version set by deeplearning4j-parent dependency management -->
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId> <!-- Version set by deeplearning4j-parent dependency management -->
             <scope>test</scope>
         </dependency>
 

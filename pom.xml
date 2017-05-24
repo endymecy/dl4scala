@@ -350,7 +350,7 @@
                     </plugin>
                     <plugin>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.10.4</version>
+                        <version>2.11.8</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -456,7 +456,7 @@
                     <failOnWarning>false</failOnWarning>
                     <sourceDirectory>${basedir}/src/main/scala</sourceDirectory>
                     <testSourceDirectory>${basedir}/src/test/scala</testSourceDirectory>
-                    <configLocation>${basedir}/scalastyle_config.xml</configLocation>
+                    <configLocation>scalastyle_config.xml</configLocation>
                     <outputFile>${project.basedir}/scalastyle-output.xml</outputFile>
                     <outputEncoding>UTF-8</outputEncoding>
                 </configuration>
@@ -546,8 +546,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.5.1</version>
                     <configuration>
-                        <source>1.7</source>
-                        <target>1.7</target>
+                        <source>1.8</source>
+                        <target>1.8</target>
                     </configuration>
                 </plugin>
                 <plugin>

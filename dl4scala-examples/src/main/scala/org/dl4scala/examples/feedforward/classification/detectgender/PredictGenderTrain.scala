@@ -30,7 +30,7 @@ object PredictGenderTrain extends App{
   val learningRate = 0.005
 
   val batchSize = 100
-  val nEpochs = 100
+  val nEpochs = 1
   var numInputs = 0
   var numOutputs = 0
   var numHiddenNodes = 0
@@ -40,10 +40,13 @@ object PredictGenderTrain extends App{
   arrayBuffer.append("M")
   arrayBuffer.append("F")
   val rr = new GenderRecordReader(arrayBuffer)
+  val rr1 = new GenderRecordReader(arrayBuffer)
 
   val st = System.currentTimeMillis
   log.info("Preprocessing start time : " + st)
   rr.initialize(new FileSplit(new File(filePath)))
+  rr1.initialize(new FileSplit(new File(filePath)))
+
   val et = System.currentTimeMillis
   log.info("Preprocessing end time : " + et)
   log.info("time taken to process data : " + (et - st) + " ms")
@@ -51,8 +54,6 @@ object PredictGenderTrain extends App{
   numInputs = rr.maxLengthName * 5 // multiplied by 5 as for each letter we use five binary digits like 00000
   numOutputs = 2
   numHiddenNodes = 2 * numInputs + numOutputs
-
-  val rr1 = new GenderRecordReader(arrayBuffer)
 
   val trainIter = new RecordReaderDataSetIterator(rr, batchSize, numInputs, 2)
   val testIter = new RecordReaderDataSetIterator(rr1, batchSize, numInputs, 2)
@@ -86,12 +87,11 @@ object PredictGenderTrain extends App{
   model.setListeners(new ScoreIterationListener(10)) // Print score every 10 parameter updates
 
   for(_ <- 0 until nEpochs){
-      while (trainIter.hasNext)
-        model.fit(trainIter)
+      while (trainIter.hasNext) model.fit(trainIter.next())
       trainIter.reset()
   }
 
-  ModelSerializer.writeModel(model, this.filePath + "PredictGender1.net", true)
+  ModelSerializer.writeModel(model, this.filePath + "/PredictGender1.net", true)
 
   log.info("Evaluate model....")
   val eval = new Evaluation(numOutputs)
