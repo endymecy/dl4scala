@@ -1,8 +1,10 @@
 package org.dl4scala.examples.convolution
 
 import java.io.File
+import java.net.URL
 
 import org.apache.commons.io.{FileUtils, FilenameUtils}
+import org.datavec.api.util.ClassPathResource
 import org.deeplearning4j.iterator.CnnSentenceDataSetIterator
 import org.deeplearning4j.iterator.provider.FileLabeledSentenceProvider
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
@@ -12,7 +14,7 @@ import org.deeplearning4j.nn.conf.{ConvolutionMode, NeuralNetConfiguration, Upda
 import org.deeplearning4j.nn.conf.layers.{ConvolutionLayer, GlobalPoolingLayer, OutputLayer, PoolingType}
 import org.deeplearning4j.nn.graph.ComputationGraph
 import org.deeplearning4j.nn.weights.WeightInit
-import org.dl4scala.examples.recurrent.word2vecsentiment.Word2VecSentimentRNN
+import org.dl4scala.examples.utilities.DataUtilities
 import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator
 import org.nd4j.linalg.lossfunctions.LossFunctions
@@ -31,12 +33,36 @@ object CnnSentenceClassificationExample extends App{
   // Data URL for downloading
   val DATA_URL = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
   // Location to save and extract the training/testing data
-  val DATA_PATH = FilenameUtils.concat(System.getProperty("java.io.tmpdir"), "dl4j_w2vSentiment/")
+  val DATA_PATH = new ClassPathResource("/w2vSentiment").getFile.getPath
   // Location (local file system) for the Google News vectors. Set this manually.
-  val WORD_VECTORS_PATH = "/PATH/TO/YOUR/VECTORS/GoogleNews-vectors-negative300.bin.gz"
+  val WORD_VECTORS_PATH = new ClassPathResource("/w2vSentiment/GoogleNews-vectors-negative300.bin.gz").getFile().getPath
 
+  def downloadData(): Unit = {
+    // Create directory if required
+    val directory = new File(DATA_PATH)
+    if (!directory.exists) directory.mkdir
+
+    // Download file:
+    val archizePath = DATA_PATH + "/aclImdb_v1.tar.gz"
+    val archiveFile = new File(archizePath)
+    val extractedPath = DATA_PATH + "/aclImdb"
+    val extractedFile = new File(extractedPath)
+
+    if (!archiveFile.exists) {
+      logger.info("Starting data download (80MB)...")
+      FileUtils.copyURLToFile(new URL(DATA_URL), archiveFile)
+      logger.info("Data (.tar.gz file) downloaded to " + archiveFile.getAbsolutePath)
+      // Extract tar.gz file to output directory
+      DataUtilities.extractTarGz(archizePath, DATA_PATH)
+    } else {
+      // Assume if archive (.tar.gz) exists, then data has already been extracted
+      logger.info("Data (.tar.gz file) already exists at " + archiveFile.getAbsolutePath)
+      if (!extractedFile.exists) DataUtilities.extractTarGz(archizePath, DATA_PATH)
+      else logger.info("Data (extracted) already exists at " + extractedFile.getAbsolutePath)
+    }
+  }
   // Download and extract data
-  Word2VecSentimentRNN.downloadData()
+  downloadData()
 
   // Basic configuration//Basic configuration
   val batchSize = 32
@@ -45,7 +71,7 @@ object CnnSentenceClassificationExample extends App{
   val truncateReviewsToLength = 256 // Truncate reviews with length (# words) greater than this
   val cnnLayerFeatureMaps = 100 // Number of feature maps / channels / depth for each CNN layer
   val globalPoolingType = PoolingType.MAX
-  val rng = new Nothing(12345) // For shuffling repeatability
+  val rng = new Random(12345) // For shuffling repeatability
 
   // Set up the network configuration. Note that we have multiple convolution layers, each wih filter
   // widths of 3, 4 and 5 as per Kim (2014) paper.
@@ -76,7 +102,7 @@ object CnnSentenceClassificationExample extends App{
       .nIn(1)
       .nOut(cnnLayerFeatureMaps)
       .build(), "input")
-    .addVertex("merge", new MergeVertex(), "cnn3", "cnn4", "cnn5")      //Perform depth concatenation
+    .addVertex("merge", new MergeVertex(), "cnn3", "cnn4", "cnn5")      // Perform depth concatenation
     .addLayer("globalPool", new GlobalPoolingLayer.Builder()
     .poolingType(globalPoolingType)
     .build(), "merge")
@@ -84,7 +110,7 @@ object CnnSentenceClassificationExample extends App{
       .lossFunction(LossFunctions.LossFunction.MCXENT)
       .activation(Activation.SOFTMAX)
       .nIn(3*cnnLayerFeatureMaps)
-      .nOut(2)    //2 classes: positive or negative
+      .nOut(2)    // 2 classes: positive or negative
       .build(), "globalPool")
     .setOutputs("out")
     .build()
@@ -101,7 +127,6 @@ object CnnSentenceClassificationExample extends App{
   // Load word vectors and get the DataSetIterators for training and testing
   logger.info("Loading word vectors and creating DataSetIterators")
 
-
   val wordVectors = WordVectorSerializer.loadStaticModel(new File(WORD_VECTORS_PATH))
   val trainIter = getDataSetIterator(isTraining = true, wordVectors, batchSize, truncateReviewsToLength, rng)
   val testIter = getDataSetIterator(isTraining = false, wordVectors, batchSize, truncateReviewsToLength, rng)
@@ -116,9 +141,7 @@ object CnnSentenceClassificationExample extends App{
     logger.info(evaluation.stats)
   }
 
-
-  //After training: load a single sentence and generate a prediction
-
+  // After training: load a single sentence and generate a prediction
   val pathFirstNegativeFile = FilenameUtils.concat(DATA_PATH, "aclImdb/test/neg/0_2.txt")
   val contentsFirstNegative = FileUtils.readFileToString(new File(pathFirstNegativeFile))
   val featuresFirstNegative = testIter.asInstanceOf[CnnSentenceDataSetIterator].loadSingleSentence(contentsFirstNegative)

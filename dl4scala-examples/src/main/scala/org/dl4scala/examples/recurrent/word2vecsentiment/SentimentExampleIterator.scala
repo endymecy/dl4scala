@@ -14,6 +14,7 @@ import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.indexing.{INDArrayIndex, NDArrayIndex}
 
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.JavaConverters._
 
 /**
   * Created by endy on 2017/5/26.
@@ -70,7 +71,7 @@ class SentimentExampleIterator(dataDirectory: String, wordVectors: WordVectors, 
     for(s: String <- reviews){
       val tokens = tokenizerFactory.create(s).getTokens
       val tokensFiltered = new ArrayBuffer[String]
-      for(token <- tokens){
+      for(token <- tokens.asScala){
         if (wordVectors.hasWord(token)) tokensFiltered.append(token)
       }
       allTokens.append(tokensFiltered)
@@ -120,7 +121,7 @@ class SentimentExampleIterator(dataDirectory: String, wordVectors: WordVectors, 
 
   override def totalOutcomes(): Int = 2
 
-  override def getLabels: ArrayBuffer[String] = ArrayBuffer("positive", "negative")
+  override def getLabels: java.util.List[String] = ArrayBuffer("positive", "negative").asJava
 
   override def inputColumns(): Int = vectorSize
 
@@ -168,7 +169,7 @@ class SentimentExampleIterator(dataDirectory: String, wordVectors: WordVectors, 
     val tokens = tokenizerFactory.create(reviewContents).getTokens
     val tokensFiltered = new ArrayBuffer[String]
 
-    for(token <- tokens){
+    for(token <- tokens.asScala){
       if (wordVectors.hasWord(token)) tokensFiltered.append(token)
     }
     val outputLength = Math.max(maxLength, tokensFiltered.size)

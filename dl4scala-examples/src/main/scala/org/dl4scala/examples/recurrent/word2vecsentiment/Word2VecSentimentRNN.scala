@@ -1,8 +1,10 @@
 package org.dl4scala.examples.recurrent.word2vecsentiment
 
 import java.io.File
+import java.net.URL
 
 import org.apache.commons.io.{FileUtils, FilenameUtils}
+import org.datavec.api.util.ClassPathResource
 import org.deeplearning4j.eval.Evaluation
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
 import org.deeplearning4j.nn.conf.layers.{GravesLSTM, RnnOutputLayer}
@@ -45,9 +47,9 @@ object Word2VecSentimentRNN extends App{
   // Data URL for downloading
   val DATA_URL = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz"
   // Location to save and extract the training/testing data
-  val DATA_PATH = FilenameUtils.concat(System.getProperty("java.io.tmpdir"), "dl4j_w2vSentiment/")
+  val DATA_PATH = new ClassPathResource("/w2vSentiment").getFile.getPath
   // Location (local file system) for the Google News vectors. Set this manually.
-  val WORD_VECTORS_PATH = "/PATH/TO/YOUR/VECTORS/GoogleNews-vectors-negative300.bin.gz"
+  val WORD_VECTORS_PATH = new ClassPathResource("/w2vSentiment/GoogleNews-vectors-negative300.bin.gz").getFile().getPath
 
   val batchSize = 64    //Number of examples in each minibatch
   val vectorSize = 300   //Size of the word vectors. 300 in the Google News model
@@ -60,14 +62,14 @@ object Word2VecSentimentRNN extends App{
     if (!directory.exists) directory.mkdir
 
     // Download file:
-    val archizePath = DATA_PATH + "aclImdb_v1.tar.gz"
+    val archizePath = DATA_PATH + "/aclImdb_v1.tar.gz"
     val archiveFile = new File(archizePath)
-    val extractedPath = DATA_PATH + "aclImdb"
+    val extractedPath = DATA_PATH + "/aclImdb"
     val extractedFile = new File(extractedPath)
 
     if (!archiveFile.exists) {
       logger.info("Starting data download (80MB)...")
-      FileUtils.copyURLToFile(new Nothing(DATA_URL), archiveFile)
+      FileUtils.copyURLToFile(new URL(DATA_URL), archiveFile)
       logger.info("Data (.tar.gz file) downloaded to " + archiveFile.getAbsolutePath)
       // Extract tar.gz file to output directory
       DataUtilities.extractTarGz(archizePath, DATA_PATH)
@@ -105,7 +107,7 @@ object Word2VecSentimentRNN extends App{
   net.setListeners(new ScoreIterationListener(1))
 
   // DataSetIterators for training and testing respectively
-  val wordVectors = WordVectorSerializer.loadStaticModel(new Nothing(WORD_VECTORS_PATH))
+  val wordVectors = WordVectorSerializer.loadStaticModel(new File(WORD_VECTORS_PATH))
   val train = new SentimentExampleIterator(DATA_PATH, wordVectors, batchSize, truncateReviewsToLength, true)
   val test = new SentimentExampleIterator(DATA_PATH, wordVectors, batchSize, truncateReviewsToLength, false)
 

@@ -15,7 +15,7 @@ object DataUtilities {
 
   @throws(classOf[IOException])
   def extractTarGz(filePath: String, outputPath: String): Unit = {
-    val fileCount = 0
+    var fileCount = 0
     var dirCount = 0
 
     logger.info("Extracting files")
@@ -23,22 +23,22 @@ object DataUtilities {
     val tais = new TarArchiveInputStream(new GzipCompressorInputStream(
       new BufferedInputStream(new FileInputStream(filePath))))
     // Read the tar entries using the getNextEntry method
-    var entry = tais.getNextTarEntry
+    var entry = tais.getNextEntry
     while (entry != null) {
       //Create directories as required//Create directories as required
       if (entry.isDirectory) {
-        new File(outputPath + entry.getName).mkdirs
+        new File(outputPath + "/" + entry.getName).mkdirs
         dirCount += 1
       } else {
         var count = 0
         val data = new Array[Byte](BUFFER_SIZE)
-        val fos = new FileOutputStream(outputPath + entry.getName)
+        val fos = new FileOutputStream(outputPath + "/" + entry.getName)
         val dest = new BufferedOutputStream(fos, BUFFER_SIZE)
-        while ((count = tais.read(data, 0, BUFFER_SIZE)) == -1) {
+        while ((count = tais.read(data, 0, BUFFER_SIZE)) != -1) {
           dest.write(data, 0, count)
         }
         dest.close()
-
+        fileCount = fileCount + 1
       }
       entry = tais.getNextTarEntry
       if (fileCount % 1000 == 0) logger.info(".")
