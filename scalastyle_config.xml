@@ -138,7 +138,7 @@
     <check class="org.scalastyle.scalariform.BlockImportChecker" level="warning" enabled="false"></check>
     <check class="org.scalastyle.scalariform.ProcedureDeclarationChecker" level="warning" enabled="false"></check>
     <check class="org.scalastyle.scalariform.ForBraceChecker" level="warning" enabled="false"></check>
-    <check class="org.scalastyle.scalariform.SpaceAfterCommentStartChecker" level="warning" enabled="true"></check>
+    <!--<check class="org.scalastyle.scalariform.SpaceAfterCommentStartChecker" level="warning" enabled="true"></check>-->
     <check class="org.scalastyle.scalariform.ScalaDocChecker" level="warning" enabled="false"></check>
     <check class="org.scalastyle.scalariform.DisallowSpaceAfterTokenChecker" level="warning" enabled="false"></check>
     <check class="org.scalastyle.scalariform.DisallowSpaceBeforeTokenChecker" level="warning" enabled="false"></check>
