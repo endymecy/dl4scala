@@ -6,6 +6,7 @@ import org.apache.commons.io.{FileUtils, FilenameUtils}
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory
+import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.dataset.api.DataSetPreProcessor
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator
@@ -140,4 +141,45 @@ class SentimentExampleIterator(dataDirectory: String, wordVectors: WordVectors, 
   override def next(): DataSet = next(batchSize)
 
   override def hasNext: Boolean = cursor_int < numExamples
+
+
+  /**
+    * Used post training to load a review from a file to a features INDArray that can be passed to the network output method
+    *
+    * @param file      File to load the review from
+    * @param maxLength Maximum length (if review is longer than this: truncate to maxLength). Use Integer.MAX_VALUE to not nruncate
+    * @return Features array
+    * @throws IOException If file cannot be read
+    */
+  @throws(classOf[IOException])
+  def loadFeaturesFromFile(file: File, maxLength: Int): INDArray = {
+    val review = FileUtils.readFileToString(file)
+    loadFeaturesFromString(review, maxLength)
+  }
+
+  /**
+    * Used post training to convert a String to a features INDArray that can be passed to the network output method
+    *
+    * @param reviewContents Contents of the review to vectorize
+    * @param maxLength Maximum length (if review is longer than this: truncate to maxLength). Use Integer.MAX_VALUE to not nruncate
+    * @return Features array for the given input String
+    */
+  def loadFeaturesFromString(reviewContents: String, maxLength: Int): INDArray = {
+    val tokens = tokenizerFactory.create(reviewContents).getTokens
+    val tokensFiltered = new ArrayBuffer[String]
+
+    for(token <- tokens){
+      if (wordVectors.hasWord(token)) tokensFiltered.append(token)
+    }
+    val outputLength = Math.max(maxLength, tokensFiltered.size)
+    val features = Nd4j.create(1, vectorSize, outputLength)
+
+    for(j <- 0 until tokens.size if j < maxLength) {
+      val token = tokens.get(j)
+      val vector = wordVectors.getWordVectorMatrix(token)
+      features.put(Array[INDArrayIndex](NDArrayIndex.point(0), NDArrayIndex.all, NDArrayIndex.point(j)), vector)
+    }
+
+    features
+  }
 }
