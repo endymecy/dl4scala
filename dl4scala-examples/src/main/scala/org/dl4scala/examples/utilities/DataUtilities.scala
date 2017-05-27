@@ -23,9 +23,8 @@ object DataUtilities {
     val tais = new TarArchiveInputStream(new GzipCompressorInputStream(
       new BufferedInputStream(new FileInputStream(filePath))))
     // Read the tar entries using the getNextEntry method
-    var entry = tais.getNextEntry
-    while (entry != null) {
-      //Create directories as required//Create directories as required
+    Stream.continually(tais.getNextTarEntry).takeWhile(_ !=null).foreach{ entry =>
+      // Create directories as required
       if (entry.isDirectory) {
         new File(outputPath + "/" + entry.getName).mkdirs
         dirCount += 1
@@ -39,7 +38,6 @@ object DataUtilities {
         dest.close()
         fileCount = fileCount + 1
       }
-      entry = tais.getNextTarEntry
       if (fileCount % 1000 == 0) logger.info(".")
     }
 
