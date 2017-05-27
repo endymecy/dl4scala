@@ -30,11 +30,10 @@ object DataUtilities {
         new File(outputPath + "/" + entry.getName).mkdirs
         dirCount += 1
       } else {
-        var count = 0
         val data = new Array[Byte](BUFFER_SIZE)
         val fos = new FileOutputStream(outputPath + "/" + entry.getName)
         val dest = new BufferedOutputStream(fos, BUFFER_SIZE)
-        while ((count = tais.read(data, 0, BUFFER_SIZE)) != -1) {
+        Stream.continually(tais.read(data, 0, BUFFER_SIZE)).takeWhile(_ != -1).foreach{ count =>
           dest.write(data, 0, count)
         }
         dest.close()
