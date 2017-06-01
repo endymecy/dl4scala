@@ -52,7 +52,7 @@ object MultiTimestepRegressionExample extends App{
   private val featuresDirTest = new File(baseTestDir, "features")
   private val labelsDirTest = new File(baseTestDir, "labels")
 
-  private val numOfVariables = 0 // in csv.
+  private var numOfVariables = 0 // in csv.
 
   // Set number of examples for training, testing, and time steps
   val trainSize = 100
@@ -109,7 +109,7 @@ object MultiTimestepRegressionExample extends App{
   val net = new MultiLayerNetwork(conf)
   net.init()
 
-  net.setListeners(new Nothing(net, 100), new ScoreIterationListener(20))
+  net.setListeners(new ScoreIterationListener(20))
 
   (0 until 50).foreach{i =>
     net.fit(trainDataIter)
@@ -133,13 +133,13 @@ object MultiTimestepRegressionExample extends App{
 
   // Init rnnTimeStep with train data and predict test data
   while (trainDataIter.hasNext) {
-    val t = trainDataIter.next
+    val t = trainDataIter.next()
     net.rnnTimeStep(t.getFeatureMatrix)
   }
 
   trainDataIter.reset()
 
-  val t = testDataIter.next
+  val t = testDataIter.next()
   val predicted = net.rnnTimeStep(t.getFeatureMatrix)
   normalizer.revertLabels(predicted)
 
@@ -171,6 +171,8 @@ object MultiTimestepRegressionExample extends App{
 
     val rawPath = Paths.get(baseDir.getAbsolutePath + "/passengers_raw.csv")
     val rawStrings = Files.readAllLines(rawPath, Charset.defaultCharset)
+
+    numOfVariables = rawStrings.get(0).split(",").length
 
     // Remove all files before generating new ones
     FileUtils.cleanDirectory(featuresDirTrain)
