@@ -1,0 +1,361 @@
+49 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Did you change your hair?ss
+50 +++$+++ u3 +++$+++ m0 +++$+++ CHASTITY +++$+++ No.
+51 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ You might wanna think about it
+59 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I missed you.
+60 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ It says here you exposed yourself to a group of freshmen girls.
+61 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ It was a bratwurst.  I was eating lunch.
+62 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ With the teeth of your zipper?
+63 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ You the new guy?
+64 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ So they tell me…
+65 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ C'mon.  I'm supposed to give you the tour.
+66 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ So … which Dakota you from?
+67 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ North, actually.  How'd you   ?
+68 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ I was kidding. People actually live there?
+69 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Yeah.  A couple.  We're outnumbered by the cows, though.
+70 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ How many people were in your old school?
+71 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Thirty-two.
+72 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Get out!
+73 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ How many people go here?
+74 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Couple thousand. Most of them evil
+77 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ That I'm used to.
+78 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Yeah, but these guys have never seen a horse.  They just jack off to Clint Eastwood.
+87 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ That girl … I …
+88 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ You burn, you pine, you perish?
+89 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Who is she?
+90 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Bianca Stratford.  Sophomore. Don't even think about it
+91 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Why not?
+92 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ I could start with your haircut, but it doesn't matter.  She's not allowed to date until her older sister does.  And that's an impossibility.
+103 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ Katarina Stratford.  My, my.  You've been terrorizing Ms. Blaise again.
+104 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Expressing my opinion is not a terrorist action.
+105 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ Well, yes, compared to your other choices of expression this year, today's events are quite mild.  By the way, Bobby Rictor's gonad retrieval operation went quite well, in case you're interested.
+106 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I still maintain that he kicked himself in the balls.  I was merely a spectator.
+107 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ The point is Kat … people perceive you as somewhat …
+108 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Tempestuous?
+109 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ No … I believe "heinous bitch" is the term used most often.
+123 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ Who's that?
+124 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Patrick Verona   Random skid.
+125 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ That's Pat Verona? The one who was gone for a year? I heard he was doing porn movies.
+126 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I'm sure he's completely incapable of doing anything that interesting.
+127 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ He always look so
+128 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Block E?
+129 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Mandella, eat.  Starving yourself is a very slow way to die.
+130 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ Just a little.
+131 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ What's this?
+132 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ An attempted slit.
+133 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I realize that the men of this fine institution are severely lacking, but killing yourself so you can be with William Shakespeare is beyond the scope of normal teenage obsessions.  You're venturing far past daytime talk show fodder and entering the world of those who need very expensive therapy.
+134 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ But imagine the things he'd say during sex.
+139 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Why do girls like that always like guys like that?
+140 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Because they're bred to.  Their mothers liked guys like that, and their grandmothers before them. Their gene pool is rarely diluted.
+141 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ He always have that shit-eating grin?
+142 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Joey Dorsey?  Perma-shit-grin.  I wish I could say he's a moron, but he's number twelve in the class.  And a model.  Mostly regional stuff, but he's rumored to have a big tube sock ad coming out.
+143 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ You know French?
+144 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Sure do … my Mom's from Canada
+145 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Guess who just signed up for a tutor?
+146 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ You mean I'd get a chance to talk to her?
+147 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ You could consecrate with her, my friend.
+148 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ The vintage look is over, Kat. Haven't you been reading your Sassy?
+149 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Yeah, and I noticed the only part of you featured in your big Kmart spread was your elbow.  Tough break.
+150 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ They're running the rest of me next month.
+151 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ The people at this school are so incredibly foul.
+152 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ You could always go with me.  I'm sure William has some friends.
+157 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Yeah, just a minor encounter with the shrew.
+158 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ That's her?  Bianca's sister?
+159 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ The mewling, rampalian wretch herself.
+161 +++$+++ u10 +++$+++ m0 +++$+++ SHARON +++$+++ In the microwave.
+162 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Make anyone cry today?
+164 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Where've you been?
+165 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Nowhere… Hi, Daddy.
+170 +++$+++ u10 +++$+++ m0 +++$+++ SHARON +++$+++ What's a synonym for throbbing?
+171 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Sarah Lawrence is on the other side of the country.
+172 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I know.
+173 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ I thought we decided you were going to school here.  At U of 0.
+174 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ You decided.
+179 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Now don't get upset. Daddy, but there's this boy… and I think he might ask…
+180 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ No! You're not dating until your sister starts dating.  End of discussion.
+181 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ What if she never starts dating?
+182 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Then neither will you.  And I'll get to sleep at night.
+183 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ But it's not fair … she's a mutant, Daddy!
+184 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ This from someone whose diary is devoted to favorite grooming tips?
+185 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Enough!
+189 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ But she doesn't want to date.
+190 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Exactly my point
+191 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Jesus!  Can a man even grab a sandwich before you women start dilating?
+192 +++$+++ u10 +++$+++ m0 +++$+++ SHARON +++$+++ Tumescent!
+193 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ You're not helping.
+194 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Can we make this quick?  Roxanne Korrine and Andrew Barrett are having an incredibly horrendous public break- up on the quad.  Again.
+195 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Well, I thought we'd start with pronunciation, if that's okay with you.
+196 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Not the hacking and gagging and spitting part.  Please.
+197 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Okay… then how 'bout we try out some French cuisine.  Saturday?  Night?
+198 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ You're asking me out.  That's so cute. What's your name again?
+199 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Forget it.
+200 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ No, no, it's my fault … we didn't have a proper introduction …-
+201 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Cameron.
+202 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ The thing is, Cameron … I'm at the mercy of a particularly hideous breed of loser.  My sister.  I can't date until she does.
+203 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Seems like she could get a date easy enough…
+204 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Why?
+205 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Unsolved mystery.  She used to be really popular when she started high school, then it was just like she got sick of it or something.
+206 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ That's a shame.
+207 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Gosh, if only we could find Kat a boyfriend…
+208 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Let me see what I can do.
+210 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ I teach her French, get to know her, dazzle her with charm and she falls in love with me.
+211 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Unlikely, but even so, she still can't go out with you.  So what's the point?
+212 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ What about him?
+213 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ You wanna go out with him?
+215 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ What makes you think he'll do it?
+216 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ He seems like he thrives on danger
+217 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ No kidding.  He's a criminal.  I heard he lit a state trooper on fire.  He just got out of Alcatraz…
+218 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ They always let felons sit in on Honors Biology?
+219 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ I'm serious, man, he's whacked.  He sold his own liver on the black market so he could buy new speakers.
+220 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Forget his reputation.  Do you think we've got a plan or not?
+221 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Did she actually say she'd go out with you?
+222 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ That's what I just said
+223 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ You know, if you do go out with Bianca, you'd be set.  You'd outrank everyone. Strictly A-list.  With me by your side.
+224 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ I thought you hated those people.
+225 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Hey … I've gotta have a few clients when I get to Wall Street.
+231 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Hey.
+232 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Are you lost?
+233 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Nope - just came by to chat
+234 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ We don't chat.
+235 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Well, actually, I thought I'd run an idea by you.  You know, just to see if you're interested.
+236 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ We're not.
+238 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ But she can't go out with you because her sister is this insane head case and no one will go out with her. right?
+239 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Does this conversation have a purpose?
+240 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ So what you need to do is recruit a guy who'll go out with her.  Someone who's up for the job.
+244 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ You got him involved?
+245 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Like we had a choice?  Besides … when you let the enemy think he's orchestrating the battle, you're in a position of power. We let him pretend he's calling the shots, and while he's busy setting up the plan, you have time to woo Bianca.
+247 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ So he has this huge raging fit about Sarah Lawrence and insists that I go to his male-dominated, puking frat boy, number one golf team school. I have no say at all.
+248 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ William would never have gone to a state school.
+249 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ William didn't even go to high school
+250 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ That's never been proven
+251 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Neither has his heterosexuality.
+252 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I appreciate your efforts toward a speedy death, but I'm consuming.  Do you mind?
+253 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ Does it matter?
+254 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ If I was Bianca, it would be, "Any school you want, precious.  Don't forget your tiara."
+257 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ I don't understand, Patrick.  You haven't done anything asinine this week. Are you not feeling well?
+258 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Touch of the flu.
+259 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ I'm at a loss, then.  What should we talk about? Your year of absence?
+261 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ Why don't we discuss your driving need to be a hemorrhoid?
+262 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ What's to discuss?
+263 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ You weren't abused, you aren't stupid, and as far as I can tell, you're only slightly psychotic … so why is it that you're such a fuck-up?
+264 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Well, you know … there's the prestige of the job title… and the benefits package is pretty good…
+271 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ C'esc ma tete. This is my head
+272 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Right.  See?  You're ready for the quiz.
+273 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ I don't want to know how to say that though.  I want to know useful things. Like where the good stores are.  How much does champagne cost?  Stuff like Chat.  I have never in my life had to point out my head to someone.
+274 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ That's because it's such a nice one.
+275 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Forget French.
+276 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ How is our little Find the Wench A Date plan progressing?
+277 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Well, there's someone I think might be …
+280 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ There.
+281 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Where?
+285 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Yeah
+286 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ What do you think?
+287 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Two legs, nice rack…
+288 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Yeah, whatever.  I want you to go out with her.
+289 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Sure, Sparky.  I'll get right on it.
+290 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ You just said
+291 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ You need money to take a girl out
+292 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ But you'd go out with her if you had the cake?
+294 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ You got it, Verona.  I pick up the tab, you do the honors.
+295 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ You're gonna pay me to take out some girl?
+296 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ I can't date her sister until that one gets a boyfriend.  And that's the catch. She doesn't want a boyfriend.
+297 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ How much?
+298 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I can't take a girl like that out on twenty bucks.
+299 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Fine, thirty.
+300 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Take it or leave it.  This isn't a negotiation.
+301 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Fifty, and you've got your man.
+304 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I mean Wo-man.  How ya doin'?
+305 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Sweating like a pig, actually.  And yourself?
+306 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ There's a way to get a guy's attention.
+307 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ My mission in life.
+309 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Pick you up Friday, then
+310 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Oh, right.  Friday.
+311 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ The night I take you to places you've never been before.  And back.
+312 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Like where?  The 7-Eleven on Burnside? Do you even know my name, screwboy?
+313 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I know a lot more than that
+319 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I have the potential to smack the crap out of you if you don't get out of my way.
+320 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Can you at least start wearing a bra?
+322 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ You hate me don't you?
+323 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I don't really think you warrant that strong an emotion.
+324 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Then say you'll spend Dollar Night at the track with me.
+325 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ And why would I do that?
+326 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Come on … the ponies, the flat beer, you with money in your eyes, me with my hand on your ass…
+327 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ You … covered in my vomit.
+328 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Seven-thirty?
+330 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Are you following me?
+331 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I was in the laundromat. I saw your car. Thought I'd say hi.
+332 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Hi
+333 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ You're not a big talker, are you?
+334 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Depends on the topic. My fenders don't really whip me into a verbal frenzy.
+335 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Hey … do you mind?
+336 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Not at all
+338 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ My insurance does not cover PMS
+339 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Then tell them I had a seizure.
+340 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Is this about Sarah Lawrence? You punishing me?
+341 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I thought you were punishing me.
+342 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Why can't we agree on this?
+343 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Because you're making decisions for me.
+344 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ As a parent, that's my right
+345 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ So what I want doesn't matter?
+346 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ You're eighteen.  You don't know what you want.  You won't know until you're forty-five and you don't have it.
+347 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ I want to go to an East Coast school! I want you to trust me to make my own choices.  I want …
+349 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ When I shell out fifty, I expect results.
+350 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I'm on it
+351 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Watching the bitch trash my car doesn't count as a date.
+352 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I got her under control. She just acts crazed in public to keep up the image.
+354 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I just upped my price
+355 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ What?
+356 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ A hundred bucks a date.
+357 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Forget it.
+358 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Forget her sister, then.
+363 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ You got something on your mind?
+364 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ I counted on you to help my cause. You and that thug are obviously failing. Aren't we ever going on our date?
+365 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ You have my word.  As a gentleman
+366 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ You're sweet.
+367 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ How do you get your hair to look like that?
+368 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Eber's Deep Conditioner every two days. And I never, ever use a blowdryer without the diffuser attachment.
+371 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Say it
+372 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ What?
+373 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Whatever the hell it is you're standin' there waitin' to say.
+375 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ What plan?
+376 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ The situation is, my man Cameron here has a major jones for Bianca Stratford.
+377 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ What is it with this chick?  She have three tits?
+378 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ I think I speak correctly when I say that Cameron's love is pure.  Purer than say … Joey Dorsey's.
+379 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Dorsey can plow whoever he wants. I'm just in this for the cash.
+380 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ That's where we can help you.  With Kat.
+381 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ So Dorsey can get the girl?
+382 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Patrick, Pat, you're not looking at the big picture.  Joey's just a pawn. We set this whole thing up so Cameron can get the girl.
+383 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ You two are gonna help me tame the wild beast?
+384 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ We're your guys.
+385 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ And he means that strictly in a non- prison-movie type of way.
+386 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Yeah … we'll see.
+388 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ This is it.  A golden opportunity. Patrick can ask Katarina to the party.
+389 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ In that case, we'll need to make it a school-wide blow out.
+390 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Will Bogey get bent?
+391 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Are you kidding?  He'll piss himself with joy.  He's the ultimate kiss ass.
+394 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ It's more
+395 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Expensive?
+396 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Exactly  So, you going to Bogey Lowenbrau's thing on Saturday?
+397 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Hopefully.
+401 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Sure have.
+402 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ I really, really, really wanna go, but I can't.  Not unless my sister goes.
+403 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ I'm workin' on it. But she doesn't seem to be goin' for him.
+404 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ She's not a…
+405 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Lesbian?  No. I found a picture of Jared Leto in one of her drawers, so I'm pretty sure she's not harboring same-sex tendencies.
+406 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ So that's the kind of guy she likes? Pretty ones?
+407 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Who knows?  All I've ever heard her say is that she'd dip before dating a guy that smokes.
+411 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ What've you got for me?
+412 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ I've retrieved certain pieces of information on Miss Katarina Stratford I think you'll find helpful.
+414 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ What?!
+415 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Good enough.
+416 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Number one.  She hates smokers
+417 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ It's a lung cancer issue
+418 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Her favorite uncle
+419 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Dead at forty-one.
+420 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Are you telling me I'm a -  "non-smoker"?
+421 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Just for now.
+424 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ He's pretty!
+425 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Okay!  I wasn't sure
+426 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Okay … Likes:  Thai food, feminist prose, and "angry, stinky girl music of the indie-rock persuasion".
+427 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ So what does that give me?  I'm supposed to buy her some noodles and a book and sit around listening to chicks who can't play their instruments?
+428 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Ever been to Club Skunk?
+429 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Yeah.
+430 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Gigglepuss is playing there tomorrow night.
+431 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Don't make me do it, man
+432 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Assail your ears for one night.
+433 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ It's her favorite band.
+436 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ I prefer to think of it simply as an alternative to what the law allows.
+437 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I'm likin' you guys better
+441 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Oh my God, does this mean you're becoming normal?
+442 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ It means that Gigglepuss is playing at Club Skunk and we're going.
+443 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Oh, I thought you might have a date  I don't know why I'm bothering to ask, but are you going to Bogey Lowenstein's party Saturday night?
+444 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ What do you think?
+445 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ I think you're a freak.  I think you do this to torture me.  And I think you suck.
+447 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ You think this'll work?
+448 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ No fear.
+458 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Always a pleasure, Brucie.
+459 +++$+++ u1 +++$+++ m0 +++$+++ BRUCE +++$+++ Didn't have you pegged for a Gigglepuss fan.  Aren't they a little too pre-teen belly-button ring for you?
+460 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Fan of a fan.  You see a couple of minors come in?
+461 +++$+++ u1 +++$+++ m0 +++$+++ BRUCE +++$+++ Never
+462 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Padua girls.  One tall, decent body. The other one kinda short and undersexed?
+463 +++$+++ u1 +++$+++ m0 +++$+++ BRUCE +++$+++ Just sent 'em through.
+473 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ hey.  Great show, huh?
+474 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ 
+475 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Excuse me?
+476 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ That's what you want, isn't it?
+477 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Do you mind?  You're sort of ruining it for me.
+481 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ You know, these guys are no Bikini Kill or The Raincoats, but they're right up there.
+482 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ You know who The Raincoats are?
+483 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ Why, don't you?
+490 +++$+++ u6 +++$+++ m0 +++$+++ MANDELLA +++$+++ What'd he say?
+491 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Who cares?
+499 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ You told me that part already.
+500 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Hell, I've just been going over the whole thing in my head and -
+502 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ I hear you're helpin' Verona.
+503 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Uh,  yeah.  We're old friend*
+504 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ You and Verona?
+505 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ What?  We took bathes together when we were kids.
+508 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ You better not fuck this up.  I'm heavily invested.
+509 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Hey … it's all for the higher good right?
+511 +++$+++ u8 +++$+++ m0 +++$+++ MISS PERKY +++$+++ You're completely demented.
+512 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ See you next week!
+517 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Daddy, I …
+518 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ And where're you going?
+519 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ If you must know, we were attempting to go to a small study group of friends.
+520 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Otherwise known as an orgy?
+521 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ It's just a party. Daddy, but I knew you'd forbid me to go since "Gloria Steinem" over there isn't going …
+523 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Daddy, people expect me to be there!
+524 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ If Kat's not going, you're not going.
+525 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ You're ruining my life'  Because you won't be normal, I can't be normal.
+526 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ What's normal?
+527 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Bogey Lowenstein's party is normal, but you're too busy listening to Bitches Who Need Prozac to know that.
+529 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Can't you forget for just one night that you're completely wretched?
+530 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ At least I'm not a clouted fen- sucked hedge-pig.
+531 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Like I'm supposed to know what that even means.
+532 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ It's Shakespeare.  Maybe you've heard of him?
+533 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Yeah, he's your freak friend Mandella's boyfriend.  I guess since I'm not allowed to go out, I should obsess over a dead guy, too.
+536 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Oh, God.  It's starting.
+537 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ It's just a party. Daddy.
+538 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Wear the belly before you go.
+539 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Daddy, no!
+540 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Just for a minute
+542 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ You are so completely unbalanced.
+543 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Can we go now?
+544 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Promise me you won't talk to any boys unless your sister is present.
+545 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Why?
+546 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ Because she'll scare them away.
+554 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Where ya goin?
+555 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Away.
+556 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ Your sister here?
+557 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Leave my sister alone.
+558 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ And why would I do that?
+564 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ What's this?
+565 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ "I'm getting trashed, man." Isn't that what you're supposed to do at a party?
+566 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ I say, do what you wanna do.
+567 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Funny, you're the only one
+571 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Where did he go?  He was just here.
+572 +++$+++ u3 +++$+++ m0 +++$+++ CHASTITY +++$+++ Who?
+573 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Joey.
+575 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Hi.
+576 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ Looks like things worked out tonight, huh?
+577 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ You know Chastity?
+578 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ I believe we share an art instructor
+579 +++$+++ u3 +++$+++ m0 +++$+++ CHASTITY +++$+++ Great
+580 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Would you mind getting me a drink, Cameron?
+583 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Extremely unfortunate maneuver.
+584 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ The hell is that?  What kind of 'guy just picks up a girl and carries her away while you're talking to her?
+585 +++$+++ u7 +++$+++ m0 +++$+++ MICHAEL +++$+++ Buttholus extremus.  But hey, you're making progress.
+586 +++$+++ u2 +++$+++ m0 +++$+++ CAMERON +++$+++ No, I ' m not.
+589 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ So yeah, I've got the Sears catalog thing going … and the tube sock gig " that's gonna be huge.  And then I'm up for an ad for Queen Harry next week.
+590 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Queen Harry?
+591 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ It's a gay cruise line, but I'll be, like, wearing a uniform and stuff.
+592 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Neat…
+593 +++$+++ u4 +++$+++ m0 +++$+++ JOEY +++$+++ My agent says I've got a good shot at being the Prada guy next year.
+595 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ He practically proposed when he found out we had the same dermatologist. I mean. Dr. Bonchowski is great an all, but he's not exactly relevant party conversation.
+596 +++$+++ u3 +++$+++ m0 +++$+++ CHASTITY +++$+++ Is he oily or dry?
+597 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Combination.  I don't know … I thought he'd be different.  More of a gentleman…
+598 +++$+++ u3 +++$+++ m0 +++$+++ CHASTITY +++$+++ Bianca, I don't think the highlights of dating Joey Dorsey are going to include door-opening and coat-holding.
+599 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ Sometimes I wonder if the guys we're supposed to want to go out with are the ones we actually want to go out with, you know?
+600 +++$+++ u3 +++$+++ m0 +++$+++ CHASTITY +++$+++ All I know is … I'd give up my private line to go out with a guy like Joey.
+601 +++$+++ u5 +++$+++ m0 +++$+++ KAT +++$+++ Bianca, I need to talk to you … I need to tell you …
+602 +++$+++ u0 +++$+++ m0 +++$+++ BIANCA +++$+++ I really don't think I need any social advice from you right now.
+605 +++$+++ u9 +++$+++ m0 +++$+++ PATRICK +++$+++ It's about time.

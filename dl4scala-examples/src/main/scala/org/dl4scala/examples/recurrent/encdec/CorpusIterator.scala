@@ -11,6 +11,13 @@ import org.nd4j.linalg.indexing.{INDArrayIndex, NDArrayIndex}
 import scala.collection.mutable.ArrayBuffer
 
 /**
+  * Motivation: I want to get asynchronous data iteration while not blocking on net.fit() until the end of epoch. I want to checkpoint
+  * the network, show intermediate test results and some stats, it would be harder to achieve with listeners I think so this is how I
+  * solved the problem. This way the learn process is asynchronous inside one macrobatch and synchronous across all the macrobatches.
+  *
+  * Macrobatch is a group of minibatches. The iterator is modified so that it reports the end of data when it exhausts a macrobatch. Then
+  * it advances (manually) to the next macrobatch.
+  *
   * Created by endy on 2017/6/1.
   */
 class CorpusIterator(corpus: ArrayBuffer[ArrayBuffer[Double]], batchSize: Int, batchesPerMacrobatch: Int,
@@ -31,9 +38,13 @@ class CorpusIterator(corpus: ArrayBuffer[ArrayBuffer[Double]], batchSize: Int, b
     val predictionMask = Nd4j.zeros(currentBatchSize, rowSize)
 
     (0 until currentBatchSize).foreach{j =>
-      val rowIn = corpus(i)
-      val rowPred = corpus(i + 1)
-      rowPred.append(1.0); // add <eos> token
+      val old_rowIn = corpus(i)
+      val rowIn = old_rowIn.reverse
+
+      val oldPred = corpus(i + 1)
+      val rowPred = new ArrayBuffer[Double]()
+      rowPred.appendAll(oldPred)
+      rowPred.append(1.0) // add <eos> token
 
       // replace the entire row in "input" using NDArrayIndex, it's faster than putScalar();
       // input is NOT made of one-hot vectors
@@ -65,9 +76,9 @@ class CorpusIterator(corpus: ArrayBuffer[ArrayBuffer[Double]], batchSize: Int, b
       decode.put(Array[INDArrayIndex](NDArrayIndex.point(j), NDArrayIndex.interval(0, dictSize),
         NDArrayIndex.interval(0, rowPred.size)), Nd4j.create(decodeOneHot))
 
-      i = i + 1
+      i += 1
     }
-    currentBatch = currentBatch + 1
+    currentBatch += 1
 
     new MultiDataSet(Array[INDArray](input, decode), Array[INDArray](prediction),
       Array[INDArray](inputMask, predictionMask), Array[INDArray](predictionMask))
