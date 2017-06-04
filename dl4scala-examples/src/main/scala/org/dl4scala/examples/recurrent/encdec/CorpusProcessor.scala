@@ -2,17 +2,15 @@ package org.dl4scala.examples.recurrent.encdec
 
 import java.io._
 import java.nio.charset.StandardCharsets
-import java.util
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
-import scala.util.control.Breaks._
 
 /**
   * Created by endy on 2017/6/3.
   */
 class CorpusProcessor( is: InputStream, rowSize: Int, countFreq: Boolean) {
-  private val dictSet = new mutable.HashSet[String]()
+  //private val dictSet = new mutable.HashSet[String]()
   private val freq = new mutable.OpenHashMap[String, Double]()
   private var dict = new mutable.OpenHashMap[String, Double]()
 
@@ -51,11 +49,13 @@ class CorpusProcessor( is: InputStream, rowSize: Int, countFreq: Boolean) {
   }
 
   protected def processLine(lastLine: String): Unit = {
-    tokenizeLine(lastLine, dictSet, addSpecials = false)
+    val dictBuffer = new ArrayBuffer[String]
+    //dictBuffer.appendAll(dictSet)
+    tokenizeLine(lastLine, dictBuffer, addSpecials = false)
   }
 
   // here we not only split the words but also store punctuation marks
-  protected def tokenizeLine(lastLine: String, resultCollection: mutable.Set[String],
+  protected def tokenizeLine(lastLine: String, resultCollection: ArrayBuffer[String],
                              addSpecials: Boolean): Unit = {
     val words = lastLine.split("[ \t]")
     for (realword <- words) {
@@ -83,8 +83,8 @@ class CorpusProcessor( is: InputStream, rowSize: Int, countFreq: Boolean) {
     }
   }
 
-  private def addWord(coll: mutable.Set[String], word: String) = {
-    if (coll != null) coll.add(word)
+  private def addWord(coll: ArrayBuffer[String], word: String) = {
+    if (coll != null) coll.append(word)
     if (countFreq) {
       val count: Double = freq.getOrElse(word, Double.NaN)
       if (count.isNaN) freq.put(word, 1.0)
@@ -92,7 +92,7 @@ class CorpusProcessor( is: InputStream, rowSize: Int, countFreq: Boolean) {
     }
   }
 
-  def getDictSet: mutable.HashSet[String] = dictSet
+  //def getDictSet: mutable.HashSet[String] = dictSet
 
   def getFreq: mutable.OpenHashMap[String, Double] = freq
 
@@ -100,7 +100,7 @@ class CorpusProcessor( is: InputStream, rowSize: Int, countFreq: Boolean) {
     this.dict = dict
   }
 
-  protected def wordsToIndexes(words: mutable.Set[String], wordIdxs: ArrayBuffer[Double]): Boolean = {
+  protected def wordsToIndexes(words: ArrayBuffer[String], wordIdxs: ArrayBuffer[Double]): Boolean = {
     var i = rowSize
     var break = false
     for (word <- words if !break) {
