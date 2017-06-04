@@ -265,7 +265,7 @@ object NewsIterator {
 
     def build = new NewsIterator(dataDirectory, wordVectors, batchSize, truncateLength, train, tokenizerFactory)
 
-    override def toString: String = "org.deeplearning4j.examples.recurrent.ProcessNews.NewsIterator.Builder(dataDirectory=" +
+    override def toString: String = "org.dl4scala.examples.recurrent.ProcessNews.NewsIterator.Builder(dataDirectory=" +
       this.dataDirectory + ", wordVectors=" + this.wordVectors + ", batchSize=" + this.batchSize +
       ", truncateLength=" + this.truncateLength + ", train=" + this.train + ")"
   }
