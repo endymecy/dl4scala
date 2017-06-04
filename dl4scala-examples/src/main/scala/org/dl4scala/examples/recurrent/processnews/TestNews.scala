@@ -9,18 +9,25 @@ import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor
 import org.deeplearning4j.text.tokenization.tokenizerfactory.{DefaultTokenizerFactory, TokenizerFactory}
 import org.deeplearning4j.util.ModelSerializer
-import org.dl4scala.examples.recurrent.processnews.TestNews._
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.indexing.{INDArrayIndex, NDArrayIndex}
 import org.slf4j.{Logger, LoggerFactory}
 
 import scala.collection.mutable.ArrayBuffer
+import scala.collection.JavaConverters._
 
 /**
   * Created by endy on 2017/6/4.
   */
 class TestNews extends javax.swing.JFrame{
+
+  private val userDirectory = new ClassPathResource("NewsData").getFile.getAbsolutePath + File.separator
+  private val WORD_VECTORS_PATH = userDirectory + "NewsWordVector.txt"
+  private val wordVectors = WordVectorSerializer.loadTxtVectors(new File(WORD_VECTORS_PATH))
+  private val tokenizerFactory: TokenizerFactory = new DefaultTokenizerFactory
+  tokenizerFactory.setTokenPreProcessor(new CommonPreprocessor)
+  private val net = ModelSerializer.restoreMultiLayerNetwork(userDirectory + "NewsModel.net")
 
   // Variables declaration - do not modify
   private var jButton1: JButton = _
@@ -103,10 +110,10 @@ class TestNews extends javax.swing.JFrame{
     val fet = testNews.getFeatureMatrix
     val predicted = net.output(fet, false)
     val arrsiz = predicted.shape
-    val crimeTotal = 0
-    val politicsTotal = 0
-    val bollywoodTotal = 0
-    val developmentTotal = 0
+//    val crimeTotal = 0
+//    val politicsTotal = 0
+//    val bollywoodTotal = 0
+//    val developmentTotal = 0
 
     val DATA_PATH = userDirectory + "LabelledNews"
     val categories = new File(DATA_PATH + File.separator + "categories.txt")
@@ -132,20 +139,20 @@ class TestNews extends javax.swing.JFrame{
       jLabel3.setText(labels(pos).split(",")(1))
     } catch {
       case e: Exception =>
-        logger.error("File Exception : " + e.getMessage)
+        TestNews.logger.error("File Exception : " + e.getMessage)
     }
   }
 
   private def prepareTestData(i_news: String): DataSet = {
     val news = new ArrayBuffer[String](1)
     val category: Array[Int] = new Array[Int](1)
-
+    news.append(i_news)
     val allTokens = new ArrayBuffer[ArrayBuffer[String]](news.size)
     var maxLength = 0
     for(s <- news){
       val tokens = tokenizerFactory.create(s).getTokens
       val tokensFiltered = new ArrayBuffer[String]
-      for (t <- tokens) {
+      for (t <- tokens.asScala) {
         if (wordVectors.hasWord(t)) tokensFiltered.append(t)
       }
       allTokens.append(tokensFiltered)
@@ -180,15 +187,7 @@ class TestNews extends javax.swing.JFrame{
 }
 
 object TestNews extends App {
-
-  private val logger: Logger = LoggerFactory.getLogger(TestNews.getClass)
-
-  private val userDirectory = new ClassPathResource("NewsData").getFile.getAbsolutePath + File.separator
-  private val WORD_VECTORS_PATH = userDirectory + "NewsWordVector.txt"
-  private val wordVectors = WordVectorSerializer.loadStaticModel(new File(WORD_VECTORS_PATH))
-  private val tokenizerFactory: TokenizerFactory = new DefaultTokenizerFactory
-  tokenizerFactory.setTokenPreProcessor(new CommonPreprocessor)
-  private val net = ModelSerializer.restoreMultiLayerNetwork(userDirectory + "NewsModel.net")
+  val logger: Logger = LoggerFactory.getLogger(classOf[TestNews])
 
   try{
     var break = false

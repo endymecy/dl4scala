@@ -55,15 +55,15 @@ import org.slf4j.{Logger, LoggerFactory}
   *
   * Created by endy on 2017/6/4.
   */
-object TrainNews {
+object TrainNews extends App{
   private val logger: Logger = LoggerFactory.getLogger(TrainNews.getClass)
 
   private val userDirectory = new ClassPathResource("NewsData").getFile.getAbsolutePath + File.separator
   private val DATA_PATH = userDirectory + "LabelledNews"
   private val WORD_VECTORS_PATH = userDirectory + "NewsWordVector.txt"
 
-  private val batchSize = 50    //Number of examples in each minibatch
-  private val nEpochs = 1000       //Number of epochs (full passes of training data) to train on
+  private val batchSize = 50    // Number of examples in each minibatch
+  private val nEpochs = 10      // Number of epochs (full passes of training data) to train on
   private val truncateReviewsToLength = 300  //Truncate reviews with length (# words) greater than this
 
   // DataSetIterators for training and testing respectively

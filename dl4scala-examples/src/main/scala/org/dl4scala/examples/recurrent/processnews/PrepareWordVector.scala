@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory
   * Created by endy on 2017/6/4.
   */
 object PrepareWordVector extends App{
-  private val log = LoggerFactory.getLogger(classOf[PrepareWordVector.type])
+  private val log = LoggerFactory.getLogger(PrepareWordVector.getClass)
 
   // Gets Path to Text file
   val classPathResource = new ClassPathResource("NewsData").getFile.getAbsolutePath + File.separator
@@ -40,7 +40,7 @@ object PrepareWordVector extends App{
     .windowSize(20)
     .iterate(iter)
     .tokenizerFactory(t)
-    .build
+    .build()
 
   log.info("Fitting Word2Vec model....")
   vec.fit()
@@ -48,6 +48,6 @@ object PrepareWordVector extends App{
   log.info("Writing word vectors to text file....")
 
   // Write word vectors to file
-  WordVectorSerializer.writeWordVectors(vec.getLookupTable, classPathResource + "NewsWordVector.txt")
+  WordVectorSerializer.writeWordVectors(vec, classPathResource + "NewsWordVector.txt")
 
 }

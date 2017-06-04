@@ -144,7 +144,7 @@ class NewsIterator(dataDirectory: String,
     for(s <- news){
       val tokens = tokenizerFactory.create(s).getTokens
       val tokensFiltered = new ArrayBuffer[String]
-      for (t <- tokens) {
+      for (t <- tokens.asScala) {
         if (wordVectors.hasWord(t)) tokensFiltered.append(t)
       }
       allTokens.append(tokensFiltered)
@@ -182,45 +182,6 @@ class NewsIterator(dataDirectory: String,
       labelsMask.putScalar(Array[Int](i, lastIdx - 1), 1.0)
     }
     new DataSet(features, labels, featuresMask, labelsMask)
-  }
-
-  /**
-    * Used post training to load a review from a file to a features INDArray that can be passed to the network output method
-    *
-    * @param file      File to load the review from
-    * @param maxLength Maximum length (if review is longer than this: truncate to maxLength). Use Integer.MAX_VALUE to not nruncate
-    * @return Features array
-    * @throws IOException If file cannot be read
-    */
-  @throws(classOf[IOException])
-  def loadFeaturesFromFile(file: Nothing, maxLength: Int): INDArray = {
-    val news = FileUtils.readFileToString(file)
-    loadFeaturesFromString(news, maxLength)
-  }
-
-  /**
-    * Used post training to convert a String to a features INDArray that can be passed to the network output method
-    *
-    * @param reviewContents Contents of the review to vectorize
-    * @param maxLength      Maximum length (if review is longer than this: truncate to maxLength). Use Integer.MAX_VALUE to not nruncate
-    * @return Features array for the given input String
-    */
-  def loadFeaturesFromString(reviewContents: String, maxLength: Int): INDArray = {
-    val tokens = tokenizerFactory.create(reviewContents).getTokens
-    val tokensFiltered = new ArrayBuffer[String]
-    for (t <- tokens) {
-      if (wordVectors.hasWord(t)) tokensFiltered.append(t)
-    }
-    val outputLength = Math.max(maxLength, tokensFiltered.size)
-
-    val features = Nd4j.create(1, vectorSize, outputLength)
-
-    for(j <- 0 until tokens.size() if j < maxLength){
-      val token = tokens.get(j)
-      val vector = wordVectors.getWordVectorMatrix(token)
-      features.put(Array[INDArrayIndex](NDArrayIndex.point(0), NDArrayIndex.all(), NDArrayIndex.point(j)), vector)
-    }
-    features
   }
 }
 
