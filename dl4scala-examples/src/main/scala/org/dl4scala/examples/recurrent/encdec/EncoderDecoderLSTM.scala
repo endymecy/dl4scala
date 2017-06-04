@@ -26,7 +26,6 @@ import org.slf4j.{Logger, LoggerFactory}
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
-import scala.util.control.Breaks._
 import scala.collection.JavaConverters._
 
 /**
@@ -146,13 +145,15 @@ class EncoderDecoderLSTM {
       logger.info("Enter d to start dialog or a number to continue training from that minibatch: ")
 
       val scanner = new Scanner(System.in)
-      Stream.continually(scanner.nextLine()).foreach{line =>
-        if (line.toLowerCase.equals("d")) startDialog(scanner)
-        else {
-          offset = Integer.valueOf(line)
-          test()
-        }
+      val line = scanner.nextLine()
+
+      if (line.toLowerCase.equals("d")) startDialog(scanner)
+      else {
+        offset = Integer.valueOf(line)
+        test()
       }
+      scanner.close()
+
     } else {
       logger.info("Creating a new network...")
       createComputationGraph()
@@ -230,7 +231,7 @@ class EncoderDecoderLSTM {
 
     corpusProcessor = new CorpusProcessor(toTempPath(CORPUS_FILENAME), ROW_SIZE, false) {
       override protected def processLine(lastLine: String): Unit = {
-        val words = new mutable.HashSet[String]
+        val words = new ArrayBuffer[String]
         tokenizeLine(lastLine, words, addSpecials = true)
         if (words.nonEmpty) {
           val wordIdxs = new ArrayBuffer[Double]
@@ -251,12 +252,12 @@ class EncoderDecoderLSTM {
     while (true) {
       logger.info("In> ")
       // input line is appended to conform to the corpus format
-      val line = "1 ++++++u11++++++ m0 ++++++WALTER++++++ " + scanner.nextLine + "\n"
+      val line = "1 +++$+++ u11 +++$+++ m0 +++$+++ WALTER +++$+++ " + scanner.nextLine + "\n"
       val dialogProcessor = new CorpusProcessor(new ByteArrayInputStream(line.getBytes(StandardCharsets.UTF_8)), ROW_SIZE,
         false) {
         override protected def processLine(lastLine: String): Unit = {
-          val words = new mutable.HashSet[String]
-          tokenizeLine(lastLine, words, true)
+          val words = new ArrayBuffer[String]
+          tokenizeLine(lastLine, words, addSpecials = true)
           val wordIdxs = new ArrayBuffer[Double]
           if (wordsToIndexes(words, wordIdxs)) {
             System.out.print("Got words: ")
@@ -265,6 +266,7 @@ class EncoderDecoderLSTM {
             }
             System.out.println()
             System.out.print("Out> ")
+            output(wordIdxs, printUnknowns = true)
           }
         }
       }
@@ -293,8 +295,7 @@ class EncoderDecoderLSTM {
     rowIn.appendAll(old_rowIn)
 
     System.out.print("In: ")
-    val print_rowIn = rowIn.reverse
-    for (idx <- print_rowIn) {
+    for (idx <- rowIn) {
       System.out.print(revDict.getOrElse(idx, "Null") + " ")
     }
     System.out.println()
