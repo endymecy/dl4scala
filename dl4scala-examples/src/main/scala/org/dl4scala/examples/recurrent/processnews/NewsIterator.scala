@@ -263,7 +263,7 @@ object NewsIterator {
       this
     }
 
-    def build = new NewsIterator(dataDirectory, wordVectors, batchSize, truncateLength, train, tokenizerFactory)
+    def build() = new NewsIterator(dataDirectory, wordVectors, batchSize, truncateLength, train, tokenizerFactory)
 
     override def toString: String = "org.dl4scala.examples.recurrent.ProcessNews.NewsIterator.Builder(dataDirectory=" +
       this.dataDirectory + ", wordVectors=" + this.wordVectors + ", batchSize=" + this.batchSize +
