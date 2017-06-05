@@ -63,7 +63,7 @@ object TrainNews extends App{
   private val WORD_VECTORS_PATH = userDirectory + "NewsWordVector.txt"
 
   private val batchSize = 50    // Number of examples in each minibatch
-  private val nEpochs = 10      // Number of epochs (full passes of training data) to train on
+  private val nEpochs = 1000      // Number of epochs (full passes of training data) to train on
   private val truncateReviewsToLength = 300  //Truncate reviews with length (# words) greater than this
 
   // DataSetIterators for training and testing respectively
