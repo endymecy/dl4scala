@@ -1,11 +1,11 @@
 package org.dl4scala.examples.recurrent.seq2seq
 
 import org.deeplearning4j.nn.graph.ComputationGraph
-import org.nd4j.linalg.api.buffer.DataBuffer
 import org.nd4j.linalg.api.ndarray.INDArray
-import org.nd4j.linalg.dataset.MultiDataSet
+import org.nd4j.linalg.dataset.api.MultiDataSet
 import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.indexing.NDArrayIndex
+import scala.collection.JavaConverters._
 
 /**
   * Created by endy on 2017/6/10.
@@ -19,11 +19,11 @@ class Seq2SeqPredicter(net: ComputationGraph) {
 
   def output(testSet: MultiDataSet, print: Boolean): INDArray = {
     val correctOutput = testSet.getLabels(0)
-    var ret = Nd4j.zeros(correctOutput.shape(), DataBuffer.Type.INT)
+    var ret: INDArray = Nd4j.zeros(correctOutput.shape(): _*)
     decoderInputTemplate = testSet.getFeatures(1).dup
 
     var currentStepThrough = 0
-    val stepThroughs = correctOutput.size(2) - 1
+    val stepThroughs: Int = correctOutput.size(2) - 1
 
     while (currentStepThrough < stepThroughs) {
       if (print) {
@@ -38,6 +38,7 @@ class Seq2SeqPredicter(net: ComputationGraph) {
       }
       currentStepThrough += 1
     }
+    ret
   }
 
 

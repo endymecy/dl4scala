@@ -39,7 +39,7 @@ class CustomSequenceIterator(seed: Int, batchSize: Int, totalBatches: Int) exten
 
     while (currentCount < sampleSize) {
       var break = false
-      while(break) {
+      while(!break) {
         num1 = randnumG.nextInt(Math.pow(10, numDigits).toInt)
         num2 = randnumG.nextInt(Math.pow(10, numDigits).toInt)
         val forSum = String.valueOf(num1) + "+" + String.valueOf(num2)
@@ -73,7 +73,7 @@ class CustomSequenceIterator(seed: Int, batchSize: Int, totalBatches: Int) exten
     new org.nd4j.linalg.dataset.MultiDataSet(inputs, labels, inputMasks, labelMasks)
   }
 
-  override def setPreProcessor(multiDataSetPreProcessor: MultiDataSetPreProcessor): Unit = _
+  override def setPreProcessor(multiDataSetPreProcessor: MultiDataSetPreProcessor): Unit = {}
 
   override def resetSupported(): Boolean = true
 
@@ -168,7 +168,7 @@ object CustomSequenceIterator {
 
   def mapToString(encodeSeq: INDArray, decodeSeq: INDArray): String = mapToString(encodeSeq, decodeSeq, " --> ")
 
-  def mapToString( encodeSeq: INDArray,  decodeSeq: INDArray,  sep: String): String = {
+  def mapToString( encodeSeq: INDArray, decodeSeq: INDArray, sep: String): String = {
     var ret = ""
     val encodeSeqS = oneHotDecode(encodeSeq)
     val decodeSeqS = oneHotDecode(decodeSeq)

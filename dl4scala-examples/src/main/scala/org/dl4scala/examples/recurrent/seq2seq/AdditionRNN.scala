@@ -11,7 +11,9 @@ import org.deeplearning4j.optimize.listeners.ScoreIterationListener
 import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.api.buffer.DataBuffer
 import org.nd4j.linalg.api.buffer.util.DataTypeUtil
+import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.lossfunctions.LossFunctions
+import org.slf4j.{Logger, LoggerFactory}
 
 /**
   * This example is modeled off the sequence to sequence RNNs described in http://arxiv.org/abs/1410.4615
@@ -47,7 +49,8 @@ import org.nd4j.linalg.lossfunctions.LossFunctions
   * Created by endy on 2017/6/10.
   */
 
-object AdditionRNN {
+object AdditionRNN{
+  val logger: Logger = LoggerFactory.getLogger(AdditionRNN.getClass)
   val NUM_DIGITS = 2
   // Random number generator seed, for reproducability
   val seed = 1234
@@ -65,69 +68,68 @@ object AdditionRNN {
   val FEATURE_VEC_SIZE = 14
 
 
-  // DataType is set to double for higher precision
+  def main(args: Array[String]): Unit = {
+    // DataType is set to double for higher precision
+    DataTypeUtil.setDTypeForContext(DataBuffer.Type.DOUBLE)
 
-  DataTypeUtil.setDTypeForContext(DataBuffer.Type.DOUBLE)
+    // This is a custom iterator that returns MultiDataSets on each call of next - More details in comments in the class
+    val iterator = new CustomSequenceIterator(seed, batchSize, totalBatches)
 
-  // This is a custom iterator that returns MultiDataSets on each call of next - More details in comments in the class
-  val iterator = new CustomSequenceIterator(seed, batchSize, totalBatches)
-
-  val configuration = new NeuralNetConfiguration.Builder()
-    .weightInit(WeightInit.XAVIER)
-    .learningRate(0.25)
-    .updater(Updater.ADAM)
-    .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT).iterations(nIterations)
-    .seed(seed)
-    .graphBuilder()
-    // These are the two inputs to the computation graph
-    .addInputs("additionIn", "sumOut")
-    .setInputTypes(InputType.recurrent(FEATURE_VEC_SIZE), InputType.recurrent(FEATURE_VEC_SIZE))
-    // The inputs to the encoder will have size = minibatch x featuresize x timesteps
-    // Note that the network only knows of the feature vector size. It does not know how many time steps unless
-    // it sees an instance of the data
-    .addLayer("encoder", new GravesLSTM.Builder().nIn(FEATURE_VEC_SIZE).nOut(numHiddenNodes).activation(Activation.SOFTSIGN).build(),"additionIn")
-    // Create a vertex indicating the very last time step of the encoder layer needs
-    // to be directed to other places in the comp graph
-    .addVertex("lastTimeStep", new LastTimeStepVertex("additionIn"), "encoder")
-    // Create a vertex that allows the duplication of 2d input to a 3d input
-    // In this case the last time step of the encoder layer (viz. 2d) is duplicated to the length of
-    // the timeseries "sumOut" which is an input to the comp graph
-    // Refer to the javadoc for more detail
-    .addVertex("duplicateTimeStep", new DuplicateToTimeSeriesVertex("sumOut"), "lastTimeStep")
-    // The inputs to the decoder will have size = size of output of last timestep of encoder
-    // (numHiddenNodes) + size of the other input to the comp graph,sumOut (feature vector size)
-    .addLayer("decoder", new GravesLSTM.Builder().nIn(FEATURE_VEC_SIZE+numHiddenNodes).nOut(numHiddenNodes).activation(Activation.SOFTSIGN).build(), "sumOut","duplicateTimeStep")
-    .addLayer("output", new RnnOutputLayer.Builder().nIn(numHiddenNodes).nOut(FEATURE_VEC_SIZE).activation(Activation.SOFTMAX).lossFunction(LossFunctions.LossFunction.MCXENT).build(), "decoder")
-    .setOutputs("output")
-    .pretrain(false).backprop(true)
-    .build()
+    val configuration = new NeuralNetConfiguration.Builder()
+      .weightInit(WeightInit.XAVIER)
+      .learningRate(0.25)
+      .updater(Updater.ADAM)
+      .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT).iterations(nIterations)
+      .seed(seed)
+      .graphBuilder()
+      // These are the two inputs to the computation graph
+      .addInputs("additionIn", "sumOut")
+      .setInputTypes(InputType.recurrent(FEATURE_VEC_SIZE), InputType.recurrent(FEATURE_VEC_SIZE))
+      // The inputs to the encoder will have size = minibatch x featuresize x timesteps
+      // Note that the network only knows of the feature vector size. It does not know how many time steps unless
+      // it sees an instance of the data
+      .addLayer("encoder", new GravesLSTM.Builder().nIn(FEATURE_VEC_SIZE).nOut(numHiddenNodes).activation(Activation.SOFTSIGN).build(),"additionIn")
+      // Create a vertex indicating the very last time step of the encoder layer needs
+      // to be directed to other places in the comp graph
+      .addVertex("lastTimeStep", new LastTimeStepVertex("additionIn"), "encoder")
+      // Create a vertex that allows the duplication of 2d input to a 3d input
+      // In this case the last time step of the encoder layer (viz. 2d) is duplicated to the length of
+      // the timeseries "sumOut" which is an input to the comp graph
+      // Refer to the javadoc for more detail
+      .addVertex("duplicateTimeStep", new DuplicateToTimeSeriesVertex("sumOut"), "lastTimeStep")
+      // The inputs to the decoder will have size = size of output of last timestep of encoder
+      // (numHiddenNodes) + size of the other input to the comp graph,sumOut (feature vector size)
+      .addLayer("decoder", new GravesLSTM.Builder().nIn(FEATURE_VEC_SIZE+numHiddenNodes).nOut(numHiddenNodes).activation(Activation.SOFTSIGN).build(), "sumOut","duplicateTimeStep")
+      .addLayer("output", new RnnOutputLayer.Builder().nIn(numHiddenNodes).nOut(FEATURE_VEC_SIZE).activation(Activation.SOFTMAX).lossFunction(LossFunctions.LossFunction.MCXENT).build(), "decoder")
+      .setOutputs("output")
+      .pretrain(false).backprop(true)
+      .build()
 
 
-  val net = new ComputationGraph(configuration)
-  net.init()
-  net.setListeners(new ScoreIterationListener(1))
+    val net = new ComputationGraph(configuration)
+    net.init()
+    net.setListeners(new ScoreIterationListener(1))
 
-  //Train model:
-  val iEpoch = 0
-  val testSize = 100
-  val predictor = new Seq2SeqPredicter(net)
+    //Train model:
+    val testSize = 100
+    val predictor = new Seq2SeqPredicter(net)
 
-  (0 until nEpochs).foreach{epoch =>
-    net.fit(iterator)
-    System.out.printf("* = * = * = * = * = * = * = * = * = ** EPOCH %d ** = * = * = * = * = * = * = * = * = * = * = * = * = * =\n", iEpoch)
-    var testData = iterator.generateTest(testSize)
-    val predictions = predictor.output(testData)
-    encode_decode_eval(predictions, testData.getFeatures(0), testData.getLabels(0))
+    (0 until nEpochs).foreach{epoch =>
+      net.fit(iterator)
+      logger.info("* = * = * = * = * = * = * = * = * = ** EPOCH "+ epoch +" ** = * = * = * = * = * = * = * = * = * = * = * = * = * =\n", epoch)
+      var testData = iterator.generateTest(testSize)
+      val predictions = predictor.output(testData)
+      encode_decode_eval(predictions, testData.getFeatures(0), testData.getLabels(0))
 
-    // (Comment/Uncomment) the following block of code to (see/or not see) how the output of the decoder
-    // is fed back into the input during test time
-    System.out.println("Printing stepping through the decoder for a minibatch of size three:")
-    testData = iterator.generateTest(3)
-    predictor.output(testData, true)
-    System.out.println("\n* = * = * = * = * = * = * = * = * = ** EPOCH " + iEpoch + " COMPLETE ** = * = * = * = * = * = * = * = * = * = * = * = * = * =")
+      // (Comment/Uncomment) the following block of code to (see/or not see) how the output of the decoder
+      // is fed back into the input during test time
+      logger.info("Printing stepping through the decoder for a minibatch of size three:")
+      testData = iterator.generateTest(3)
+      predictor.output(testData, print = true)
+      logger.info("\n* = * = * = * = * = * = * = * = * = ** EPOCH " + epoch + " COMPLETE ** = * = * = * = * = * = * = * = * = * = * = * = * = * =")
+    }
   }
 
-  import org.nd4j.linalg.api.ndarray.INDArray
 
   private def encode_decode_eval(predictions: INDArray, questions: INDArray, answers: INDArray) = {
     val nTests = predictions.size(0)
