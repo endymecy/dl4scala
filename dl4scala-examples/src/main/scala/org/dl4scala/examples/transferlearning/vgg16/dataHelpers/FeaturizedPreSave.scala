@@ -57,7 +57,7 @@ object FeaturizedPreSave {
     val fileFolder = if (isTrain) new File("trainFolder")
     else new File("testFolder")
 
-    if (iterNum eq 0) fileFolder.mkdirs
+    if (iterNum == 0) fileFolder.mkdirs
     var fileName = "flowers-" + featurizeExtractionLayer + "-"
     if (isTrain) fileName +=  "train-" else fileName +=  "test-"
     fileName += iterNum + ".bin"
