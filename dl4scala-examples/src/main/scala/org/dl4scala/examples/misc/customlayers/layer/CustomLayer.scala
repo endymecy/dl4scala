@@ -11,10 +11,14 @@ import org.deeplearning4j.nn.params.DefaultParamInitializer
 import org.deeplearning4j.optimize.api.IterationListener
 import org.nd4j.linalg.activations.{Activation, IActivation}
 import org.nd4j.linalg.api.ndarray.INDArray
+
 /**
   * Created by endy on 2017/7/1.
   */
 class CustomLayer(builder: Builder) extends FeedForwardLayer(builder){
+
+  def this()= this(new Builder)
+
   private var secondActivationFunction = builder.secondActivationFunction
 
   def getSecondActivationFunction: IActivation =  secondActivationFunction
@@ -65,20 +69,21 @@ object CustomLayer {
       * @param secondActivationFunction Second activation function for the layer
       */
     def secondActivationFunction(secondActivationFunction: String): Builder =
-      secondActivationFunction1(Activation.fromString(secondActivationFunction))
+      this.secondActivationFunction(Activation.fromString(secondActivationFunction))
 
     /**
       * A custom property used in this custom layer example. See the CustomLayerExampleReadme.md for details
       *
       * @param secondActivationFunction Second activation function for the layer
       */
-    def secondActivationFunction1(secondActivationFunction: Activation): Builder = {
+    def secondActivationFunction(secondActivationFunction: Activation): Builder = {
       this.secondActivationFunction = secondActivationFunction.getActivationFunction
       this
     }
 
-    override def build[E <: Layer](): CustomLayer = {
-      new CustomLayer(this)
+    @unchecked
+    override def build[T <: Layer](): T = {
+      new CustomLayer(this).asInstanceOf[T]
     }
   }
 }

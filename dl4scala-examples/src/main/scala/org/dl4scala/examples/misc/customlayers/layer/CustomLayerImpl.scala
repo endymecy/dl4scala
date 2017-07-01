@@ -7,6 +7,8 @@ import org.deeplearning4j.nn.params.DefaultParamInitializer
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.indexing.NDArrayIndex
+import org.deeplearning4j.berkeley.Pair
+
 
 /**
   * Created by endy on 2017/7/1.
@@ -34,7 +36,7 @@ class CustomLayerImpl(conf: NeuralNetConfiguration) extends BaseLayer[CustomLaye
     output
   }
 
-  override def backpropGradient(epsilon: INDArray): (Gradient, INDArray) = {
+  override def backpropGradient(epsilon: INDArray): Pair[Gradient, INDArray] = {
     val activationDerivative = preOutput(true)
     val columns = activationDerivative.columns
 
@@ -67,6 +69,6 @@ class CustomLayerImpl(conf: NeuralNetConfiguration) extends BaseLayer[CustomLaye
 
     val epsilonNext = params.get(DefaultParamInitializer.WEIGHT_KEY).mmul(activationDerivative.transpose).transpose
 
-    (ret, epsilonNext)
+    new Pair(ret, epsilonNext)
   }
 }
