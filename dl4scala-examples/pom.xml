@@ -86,6 +86,13 @@
             <version>${dl4j.version}</version>
         </dependency>
 
+        <!-- ParallelWrapper & ParallelInference live here -->
+        <dependency>
+            <groupId>org.deeplearning4j</groupId>
+            <artifactId>deeplearning4j-parallel-wrapper_2.11</artifactId>
+            <version>${dl4j.version}</version>
+        </dependency>
+
         <!-- Force guava versions for using UI/HistogramIterationListener -->
         <dependency>
             <groupId>com.google.guava</groupId>
