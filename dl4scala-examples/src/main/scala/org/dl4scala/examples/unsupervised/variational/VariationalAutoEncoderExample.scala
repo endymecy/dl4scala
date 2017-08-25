@@ -11,6 +11,7 @@ import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.factory.Nd4j
+import org.nd4j.linalg.indexing.NDArrayIndex
 import org.slf4j.LoggerFactory
 
 import scala.collection.mutable.ArrayBuffer
@@ -55,7 +56,7 @@ object VariationalAutoEncoderExample {
       .seed(rngSeed)
       .iterations(1).optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
       .learningRate(1e-2)
-      .updater(Updater.RMSPROP).rmsDecay(0.95)
+      .updater(Updater.RMSPROP)
       .weightInit(WeightInit.XAVIER)
       .regularization(true).l2(1e-4)
       .list()
@@ -127,7 +128,6 @@ object VariationalAutoEncoderExample {
     val linspaceRow = Nd4j.linspace(plotMin, plotMax, plotSteps)
 
     (0 until plotSteps).foreach{i =>
-      import org.nd4j.linalg.indexing.NDArrayIndex
       data.get(NDArrayIndex.interval(i * plotSteps, (i + 1) * plotSteps), NDArrayIndex.point(0)).assign(linspaceRow)
       val yStart = plotSteps - i - 1
       data.get(NDArrayIndex.interval(yStart * plotSteps, (yStart + 1) * plotSteps), NDArrayIndex.point(1)).assign(linspaceRow.getDouble(i))

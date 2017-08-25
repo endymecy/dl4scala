@@ -13,6 +13,12 @@ import org.jfree.data.xy.{XYDataset, XYSeries, XYSeriesCollection}
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.factory.Nd4j
 
+import javax.swing.JFrame
+import javax.swing.JPanel
+import javax.swing.JSlider
+import javax.swing.WindowConstants
+import java.awt.BorderLayout
+
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -71,14 +77,7 @@ object PlotUtil {
     f.setVisible(true)
   }
 
-  import org.jfree.chart.ChartPanel
-  import org.nd4j.linalg.api.ndarray.INDArray
-  import javax.swing.JFrame
-  import javax.swing.JPanel
-  import javax.swing.JSlider
-  import javax.swing.WindowConstants
-  import javax.swing.event.ChangeEvent
-  import java.awt.BorderLayout
+
 
   def plotData(xyVsIter: ArrayBuffer[INDArray], labels: INDArray, axisMin: Double, axisMax: Double, plotFrequency: Int): Unit = {
     val panel = new ChartPanel(createChart(xyVsIter(0), labels, axisMin, axisMax))
