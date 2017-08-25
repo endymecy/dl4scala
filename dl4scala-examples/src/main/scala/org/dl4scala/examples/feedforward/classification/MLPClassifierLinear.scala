@@ -17,6 +17,7 @@ import org.slf4j.{Logger, LoggerFactory}
 import org.nd4j.linalg.factory.Nd4j
 import org.datavec.api.split.FileSplit
 import org.deeplearning4j.datasets.datavec.RecordReaderDataSetIterator
+import org.nd4j.linalg.learning.config.Nesterovs
 
 
 /**
@@ -52,7 +53,7 @@ object MLPClassifierLinear extends App{
     .iterations(1)
     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
     .learningRate(learningRate)
-    .updater(Updater.NESTEROVS).momentum(0.9)
+    .updater(new Nesterovs(0.9))
     .list()
     .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
       .weightInit(WeightInit.XAVIER)

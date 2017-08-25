@@ -13,6 +13,7 @@ import org.deeplearning4j.nn.conf.layers.{ConvolutionLayer, DenseLayer, OutputLa
 import org.nd4j.linalg.activations.Activation
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener
+import org.nd4j.linalg.learning.config.Nesterovs
 import org.nd4j.linalg.lossfunctions.LossFunctions
 
 import scala.collection.mutable
@@ -62,7 +63,7 @@ object LenetMnistExample extends App{
     .learningRateSchedule(lrSchedule.asJava)
     .weightInit(WeightInit.XAVIER)
     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-    .updater(Updater.NESTEROVS).momentum(0.9)
+    .updater(new Nesterovs(0.9))
     .list()
     .layer(0, new ConvolutionLayer.Builder(5, 5)
       // nIn and nOut specify depth. nIn here is the nChannels and nOut is the number of filters to be applied
@@ -119,12 +120,7 @@ object LenetMnistExample extends App{
     log.info("*** Completed epoch {} ***", i)
 
     log.info("Evaluate model....")
-    val eval = new Evaluation(outputNum)
-    while (mnistTest.hasNext) {
-      val ds = mnistTest.next
-      val output = model.output(ds.getFeatureMatrix, false)
-      eval.eval(ds.getLabels, output)
-    }
+    val eval = model.evaluate(mnistTest)
     log.info(eval.stats)
     mnistTest.reset()
   }

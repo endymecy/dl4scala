@@ -7,7 +7,8 @@ import org.deeplearning4j.nn.params.DefaultParamInitializer
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.indexing.NDArrayIndex
-import org.deeplearning4j.berkeley.Pair
+import org.nd4j.linalg.primitives
+
 
 
 /**
@@ -27,7 +28,7 @@ class CustomLayerImpl(conf: NeuralNetConfiguration) extends BaseLayer[CustomLaye
     val firstHalf = output.get(NDArrayIndex.all, NDArrayIndex.interval(0, columns / 2))
     val secondHalf = output.get(NDArrayIndex.all, NDArrayIndex.interval(columns / 2, columns))
 
-    val activation1 = conf.getLayer.getActivationFn
+    val activation1 = layerConf().getActivationFn
     val activation2 = conf.getLayer.asInstanceOf[CustomLayer].getSecondActivationFunction
 
     // IActivation function instances modify the activation functions in-place
@@ -36,7 +37,7 @@ class CustomLayerImpl(conf: NeuralNetConfiguration) extends BaseLayer[CustomLaye
     output
   }
 
-  override def backpropGradient(epsilon: INDArray): Pair[Gradient, INDArray] = {
+  override def backpropGradient(epsilon: INDArray): primitives.Pair[Gradient, INDArray] = {
     val activationDerivative = preOutput(true)
     val columns = activationDerivative.columns
 
@@ -46,7 +47,7 @@ class CustomLayerImpl(conf: NeuralNetConfiguration) extends BaseLayer[CustomLaye
     val epsilonFirstHalf = epsilon.get(NDArrayIndex.all, NDArrayIndex.interval(0, columns / 2))
     val epsilonSecondHalf = epsilon.get(NDArrayIndex.all, NDArrayIndex.interval(columns / 2, columns))
 
-    val activation1 = conf.getLayer.getActivationFn
+    val activation1 = layerConf().getActivationFn
     val activation2 = conf.getLayer.asInstanceOf[CustomLayer].getSecondActivationFunction
 
     //IActivation backprop method modifies the 'firstHalf' and 'secondHalf' arrays in-place, to contain dL/dz
@@ -69,6 +70,6 @@ class CustomLayerImpl(conf: NeuralNetConfiguration) extends BaseLayer[CustomLaye
 
     val epsilonNext = params.get(DefaultParamInitializer.WEIGHT_KEY).mmul(activationDerivative.transpose).transpose
 
-    new Pair(ret, epsilonNext)
+    new primitives.Pair(ret, epsilonNext)
   }
 }

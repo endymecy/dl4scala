@@ -123,7 +123,6 @@ class EncoderDecoderLSTM {
   // dictionary) are replaced with <unk> token
   private val TBPTT_SIZE = 25
   private val LEARNING_RATE = 1e-1
-  private val RMS_DECAY = 0.95
   private val ROW_SIZE = 40 // maximum line length in tokens
 
   private val GC_WINDOW = 2000 // delay between garbage collections, try to reduce if you run out of VRAM or increase for
@@ -306,7 +305,7 @@ class EncoderDecoderLSTM {
 
   private def createComputationGraph() = {
     val builder = new NeuralNetConfiguration.Builder
-    builder.iterations(1).learningRate(LEARNING_RATE).rmsDecay(RMS_DECAY)
+    builder.iterations(1).learningRate(LEARNING_RATE)
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT).miniBatch(true).updater(Updater.RMSPROP)
       .weightInit(WeightInit.XAVIER).gradientNormalization(GradientNormalization.RenormalizeL2PerLayer)
 

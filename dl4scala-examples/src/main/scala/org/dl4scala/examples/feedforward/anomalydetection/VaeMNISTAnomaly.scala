@@ -10,6 +10,7 @@ import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.factory.Nd4j
+import org.nd4j.linalg.learning.config.Adam
 
 import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
@@ -60,7 +61,7 @@ object VaeMNISTAnomaly extends App{
   val conf = new NeuralNetConfiguration.Builder()
     .seed(rngSeed)
     .learningRate(0.05)
-    .updater(Updater.ADAM).adamMeanDecay(0.9).adamVarDecay(0.999)
+    .updater(Adam.builder().beta1(0.9).beta2(0.999).build())
     .weightInit(WeightInit.XAVIER)
     .regularization(true).l2(1e-4)
     .list()

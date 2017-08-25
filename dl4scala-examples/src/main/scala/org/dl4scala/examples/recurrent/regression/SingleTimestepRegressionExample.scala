@@ -62,7 +62,7 @@ object SingleTimestepRegressionExample extends App{
     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
     .iterations(1)
     .weightInit(WeightInit.XAVIER)
-    .updater(Updater.NESTEROVS).momentum(0.9)
+    .updater(Updater.NESTEROVS)
     .learningRate(0.0015)
     .list
     .layer(0, new GravesLSTM.Builder().activation(Activation.TANH).nIn(1).nOut(10).build)

@@ -14,7 +14,9 @@ import org.nd4j.linalg.dataset.api.iterator.DataSetIterator
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.factory.Nd4j
+import org.nd4j.linalg.learning.config.Nesterovs
 import org.slf4j.{Logger, LoggerFactory}
+
 import scala.collection.JavaConverters._
 import scala.util.Random
 
@@ -58,7 +60,7 @@ object RegressionSum extends App{
     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
     .learningRate(learningRate)
     .weightInit(WeightInit.XAVIER)
-    .updater(Updater.NESTEROVS).momentum(0.9)
+    .updater(new Nesterovs(0.9))
     .list()
     .layer(0, new DenseLayer.Builder().nIn(numInput).nOut(nHidden)
       .activation(Activation.TANH)

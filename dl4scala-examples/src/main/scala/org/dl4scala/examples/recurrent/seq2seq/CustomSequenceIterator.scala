@@ -148,6 +148,8 @@ class CustomSequenceIterator(seed: Int, batchSize: Int, totalBatches: Int) exten
 
     decoded
   }
+
+  override def getPreProcessor: MultiDataSetPreProcessor = null
 }
 
 object CustomSequenceIterator {

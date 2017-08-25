@@ -3,16 +3,16 @@ package org.dl4scala.examples.nlp.tsne
 import java.io.File
 
 import org.datavec.api.util.ClassPathResource
-import org.deeplearning4j.berkeley
 import org.deeplearning4j.models.embeddings.inmemory.InMemoryLookupTable
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
 import org.deeplearning4j.models.sequencevectors.sequence.SequenceElement
 import org.deeplearning4j.models.word2vec.wordstore.VocabCache
 import org.nd4j.linalg.api.buffer.DataBuffer
 import org.nd4j.linalg.api.buffer.util.DataTypeUtil
+import org.nd4j.linalg.primitives
 import org.slf4j.LoggerFactory
-import scala.collection.JavaConverters._
 
+import scala.collection.JavaConverters._
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -33,7 +33,7 @@ object TSNEStandardExample {
     val wordFile = new ClassPathResource("words.txt").getFile //Open the file
 
     //Get the data of all unique word vectors
-    val vectors: berkeley.Pair[InMemoryLookupTable[_ <: SequenceElement], VocabCache[_ <: SequenceElement]] = WordVectorSerializer.loadTxt(wordFile)
+    val vectors: primitives.Pair[InMemoryLookupTable[_ <: SequenceElement], VocabCache[_ <: SequenceElement]] = WordVectorSerializer.loadTxt(wordFile)
     val cache = vectors.getSecond
     val weights = vectors.getFirst.getSyn0 //seperate weights of unique words into their own list
 

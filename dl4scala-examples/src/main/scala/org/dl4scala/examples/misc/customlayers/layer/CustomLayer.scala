@@ -7,6 +7,8 @@ import CustomLayer.Builder
 import org.deeplearning4j.nn.api
 import org.deeplearning4j.nn.api.ParamInitializer
 import org.deeplearning4j.nn.conf.NeuralNetConfiguration
+import org.deeplearning4j.nn.conf.inputs.InputType
+import org.deeplearning4j.nn.conf.memory.{LayerMemoryReport, MemoryReport}
 import org.deeplearning4j.nn.params.DefaultParamInitializer
 import org.deeplearning4j.optimize.api.IterationListener
 import org.nd4j.linalg.activations.{Activation, IActivation}
@@ -57,6 +59,36 @@ class CustomLayer(builder: Builder) extends FeedForwardLayer(builder){
   // In this case, we can use the DefaultParamInitializer, which is the same one used for DenseLayer
   // For more complex layers, you may need to implement a custom parameter initializer
   override def initializer(): ParamInitializer = DefaultParamInitializer.getInstance
+
+  override def getMemoryReport(inputType: InputType): LayerMemoryReport = {
+    //Memory report is used to estimate how much memory is required for the layer, for different configurations//Memory report is used to estimate how much memory is required for the layer, for different configurations
+
+    //If you don't need this functionality for your custom layer, you can return a LayerMemoryReport
+    // with all 0s, or
+
+    //This implementation: based on DenseLayer implementation
+    val outputType = getOutputType(-1, inputType)
+
+    val numParams = initializer().numParams(this)
+    val updaterStateSize = getIUpdater.stateSize(numParams).asInstanceOf[Int]
+
+    val trainSizeFixed = 0
+    var trainSizeVariable = 0
+    if (getDropOut > 0) { //Assume we dup the input for dropout
+      trainSizeVariable += inputType.arrayElementsPerExample
+    }
+
+    //Also, during backprop: we do a preOut call -> gives us activations size equal to the output size
+    // which is modified in-place by activation function backprop
+    // then we have 'epsilonNext' which is equivalent to input size
+    trainSizeVariable += outputType.arrayElementsPerExample()
+
+    new LayerMemoryReport.Builder(layerName, CustomLayer.getClass, inputType, outputType)
+    .standardMemory(numParams, updaterStateSize)
+      .workingMemory(0, 0, trainSizeFixed, trainSizeVariable)     //No additional memory (beyond activations) for inference
+      .cacheMemory(MemoryReport.CACHE_MODE_ALL_ZEROS, MemoryReport.CACHE_MODE_ALL_ZEROS) //No caching in DenseLayer
+      .build()
+  }
 }
 
 object CustomLayer {

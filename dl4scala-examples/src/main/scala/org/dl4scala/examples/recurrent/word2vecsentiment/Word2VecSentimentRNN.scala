@@ -8,12 +8,13 @@ import org.datavec.api.util.ClassPathResource
 import org.deeplearning4j.eval.Evaluation
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
 import org.deeplearning4j.nn.conf.layers.{GravesLSTM, RnnOutputLayer}
-import org.deeplearning4j.nn.conf.{GradientNormalization, NeuralNetConfiguration, Updater}
+import org.deeplearning4j.nn.conf.{GradientNormalization, NeuralNetConfiguration, Updater, WorkspaceMode}
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.nn.weights.WeightInit
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener
 import org.dl4scala.examples.utilities.DataUtilities
 import org.nd4j.linalg.activations.Activation
+import org.nd4j.linalg.factory.Nd4j
 import org.nd4j.linalg.indexing.NDArrayIndex
 import org.nd4j.linalg.lossfunctions.LossFunctions
 import org.slf4j.{Logger, LoggerFactory}
@@ -56,6 +57,8 @@ object Word2VecSentimentRNN extends App{
   val nEpochs = 1      //Number of epochs (full passes of training data) to train on
   val truncateReviewsToLength = 256  //Truncate reviews with length (# words) greater than this
 
+  Nd4j.getMemoryManager.setAutoGcWindow(10000)
+
   def downloadData(): Unit = {
     // Create directory if required
     val directory = new File(DATA_PATH)
@@ -87,13 +90,12 @@ object Word2VecSentimentRNN extends App{
   // Set up network configuration
   val conf = new NeuralNetConfiguration.Builder()
     .updater(Updater.ADAM)
-    .adamMeanDecay(0.9)
-    .adamVarDecay(0.999)
     .regularization(true).l2(1e-5)
     .weightInit(WeightInit.XAVIER)
     .gradientNormalization(GradientNormalization.ClipElementWiseAbsoluteValue)
     .gradientNormalizationThreshold(1.0)
     .learningRate(2e-2)
+    .trainingWorkspaceMode(WorkspaceMode.SEPARATE).inferenceWorkspaceMode(WorkspaceMode.SEPARATE)
     .list()
     .layer(0, new GravesLSTM.Builder().nIn(vectorSize).nOut(256)
       .activation(Activation.TANH).build())

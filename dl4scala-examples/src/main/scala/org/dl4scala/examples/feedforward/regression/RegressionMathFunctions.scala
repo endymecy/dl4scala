@@ -19,6 +19,7 @@ import org.jfree.chart.{ChartFactory, ChartPanel}
 import org.jfree.chart.plot.PlotOrientation
 import org.jfree.data.xy.{XYSeries, XYSeriesCollection}
 import org.nd4j.linalg.dataset.DataSet
+import org.nd4j.linalg.learning.config.Nesterovs
 
 import scala.collection.JavaConverters._
 
@@ -54,7 +55,7 @@ object RegressionMathFunctions extends App{
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
       .learningRate(learningRate)
       .weightInit(WeightInit.XAVIER)
-      .updater(Updater.NESTEROVS).momentum(0.9)
+      .updater(new Nesterovs(0.9))
       .list()
       .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
         .activation(Activation.TANH).build())

@@ -15,6 +15,7 @@ import org.deeplearning4j.nn.weights.WeightInit
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener
 import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.factory.Nd4j
+import org.nd4j.linalg.learning.config.Nesterovs
 import org.nd4j.linalg.lossfunctions.LossFunctions.LossFunction
 import org.slf4j.{Logger, LoggerFactory}
 
@@ -52,7 +53,7 @@ object MLPClassifierMoon extends App{
     .iterations(1)
     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
     .learningRate(learningRate)
-    .updater(Updater.NESTEROVS).momentum(0.9)
+    .updater(new Nesterovs(0.9))
     .list()
     .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
       .weightInit(WeightInit.XAVIER)

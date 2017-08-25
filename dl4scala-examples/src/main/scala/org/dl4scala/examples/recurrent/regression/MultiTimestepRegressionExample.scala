@@ -99,7 +99,7 @@ object MultiTimestepRegressionExample extends App{
     .seed(140)
     .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
     .iterations(1).weightInit(WeightInit.XAVIER)
-    .updater(Updater.NESTEROVS).momentum(0.9)
+    .updater(Updater.NESTEROVS)
     .learningRate(0.15)
     .list
     .layer(0, new GravesLSTM.Builder().activation(Activation.TANH).nIn(numOfVariables).nOut(10).build)

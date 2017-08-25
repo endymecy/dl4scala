@@ -51,7 +51,6 @@ object SequenceVectorsTextExample {
     constructor.buildJointVocabulary(false, true)
 
     val lookupTable = new InMemoryLookupTable.Builder[VocabWord]()
-      .lr(0.025)
       .vectorLength(150)
       .useAdaGrad(false)
       .cache(vocabCache)

@@ -24,7 +24,7 @@ class TestNews extends javax.swing.JFrame{
 
   private val userDirectory = new ClassPathResource("NewsData").getFile.getAbsolutePath + File.separator
   private val WORD_VECTORS_PATH = userDirectory + "NewsWordVector.txt"
-  private val wordVectors = WordVectorSerializer.loadTxtVectors(new File(WORD_VECTORS_PATH))
+  private val wordVectors = WordVectorSerializer.readWord2VecModel(new File(WORD_VECTORS_PATH))
   private val tokenizerFactory: TokenizerFactory = new DefaultTokenizerFactory
   tokenizerFactory.setTokenPreProcessor(new CommonPreprocessor)
   private val net = ModelSerializer.restoreMultiLayerNetwork(userDirectory + "NewsModel.net")

@@ -4,7 +4,7 @@ import org.datavec.api.util.ClassPathResource
 import org.deeplearning4j.models.embeddings.inmemory.InMemoryLookupTable
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer
 import org.deeplearning4j.models.word2vec.{VocabWord, Word2Vec}
-import org.deeplearning4j.models.word2vec.wordstore.inmemory.InMemoryLookupCache
+import org.deeplearning4j.models.word2vec.wordstore.inmemory.{AbstractCache, InMemoryLookupCache}
 import org.deeplearning4j.text.sentenceiterator.BasicLineIterator
 import org.deeplearning4j.text.tokenization.tokenizer.preprocessor.CommonPreprocessor
 import org.deeplearning4j.text.tokenization.tokenizerfactory.DefaultTokenizerFactory
@@ -29,12 +29,11 @@ object Word2VecUptrainingExample {
 
     // manual creation of VocabCache and WeightLookupTable usually isn't necessary
     // but in this case we'll need them
-    val cache = new InMemoryLookupCache
+    val cache = new AbstractCache[VocabWord]()
     val table = new InMemoryLookupTable.Builder[VocabWord]()
       .vectorLength(100)
       .useAdaGrad(false)
       .cache(cache)
-      .lr(0.025f)
       .build
 
     log.info("Building model....")
@@ -57,9 +56,9 @@ object Word2VecUptrainingExample {
     var lst = vec.wordsNearest("day", 10)
     log.info("Closest words to 'day' on 1st run: " + lst)
 
-    WordVectorSerializer.writeFullModel(vec, "pathToSaveModel.txt")
+    WordVectorSerializer.writeWord2VecModel(vec, "pathToSaveModel.txt")
 
-    val word2Vec = WordVectorSerializer.loadFullModel("pathToSaveModel.txt")
+    val word2Vec = WordVectorSerializer.readWord2VecModel("pathToSaveModel.txt")
 
     val iterator = new BasicLineIterator(filePath)
     val tokenizerFactory = new DefaultTokenizerFactory

@@ -65,7 +65,7 @@ object PredictGenderTrain extends App{
       .regularization(true).l2(1e-4)
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
       .learningRate(learningRate)
-      .updater(Updater.NESTEROVS).momentum(0.9)
+      .updater(Updater.NESTEROVS)
       .list()
       .layer(0, new DenseLayer.Builder().nIn(numInputs).nOut(numHiddenNodes)
         .weightInit(WeightInit.XAVIER)

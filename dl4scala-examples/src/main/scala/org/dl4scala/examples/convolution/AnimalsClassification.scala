@@ -25,7 +25,9 @@ import org.deeplearning4j.util.ModelSerializer
 import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.dataset.api.iterator.DataSetIterator
 import org.nd4j.linalg.dataset.api.preprocessor.ImagePreProcessingScaler
+import org.nd4j.linalg.learning.config.Nesterovs
 import org.nd4j.linalg.lossfunctions.LossFunctions
+
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -136,7 +138,8 @@ class AnimalsClassification {
     var dataIter: DataSetIterator = new RecordReaderDataSetIterator(recordReader, batchSize, 1, numLabels)
     scaler.fit(dataIter)
     dataIter.setPreProcessor(scaler)
-    var trainIter: MultipleEpochsIterator = new MultipleEpochsIterator(epochs, dataIter, nCores)
+    var trainIter: MultipleEpochsIterator = new MultipleEpochsIterator(epochs, dataIter)
+    network.fit(trainIter)
 
     for (transform <- transforms) {
       log.info("\nTraining on transformation: " + transform.getClass.toString + "\n\n")
@@ -144,7 +147,7 @@ class AnimalsClassification {
       dataIter = new RecordReaderDataSetIterator(recordReader, batchSize, 1, numLabels)
       scaler.fit(dataIter)
       dataIter.setPreProcessor(scaler)
-      trainIter = new MultipleEpochsIterator(epochs, dataIter, nCores)
+      trainIter = new MultipleEpochsIterator(epochs, dataIter)
       network.fit(trainIter)
     }
 
@@ -202,7 +205,7 @@ class AnimalsClassification {
       .learningRate(0.0001) // tried 0.00001, 0.00005, 0.000001
       .weightInit(WeightInit.XAVIER)
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-      .updater(Updater.RMSPROP).momentum(0.9)
+      .updater(new Nesterovs(0.9))
       .list()
       .layer(0, convInit("cnn1", channels, 50, Array[Int](5, 5), Array[Int](1, 1), Array[Int](0, 0), 0))
       .layer(1, maxPool("maxpool1", Array[Int](2,2), Array[Int](2, 2)))
@@ -236,7 +239,7 @@ class AnimalsClassification {
       .weightInit(WeightInit.DISTRIBUTION)
       .dist(new NormalDistribution(0.0, 0.01))
       .activation(Activation.RELU)
-      .updater(Updater.NESTEROVS)
+      .updater(new Nesterovs(0.9))
       .iterations(iterations)
       .gradientNormalization(GradientNormalization.RenormalizeL2PerLayer) // normalize to prevent vanishing or exploding gradients
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
@@ -247,7 +250,6 @@ class AnimalsClassification {
       .lrPolicySteps(100000)
       .regularization(true)
       .l2(5 * 1e-4)
-      .momentum(0.9)
       .miniBatch(false)
       .list()
       .layer(0, convInit("cnn1", channels, 96, Array[Int](11, 11), Array[Int](4, 4), Array[Int](3, 3), 0))

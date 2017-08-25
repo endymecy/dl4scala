@@ -44,7 +44,7 @@ object Word2VecRawTextExample {
 
     log.info("Writing word vectors to text file....")
     // Write word vectors to file
-    WordVectorSerializer.writeWordVectors(vec, "pathToWriteto.txt")
+    // WordVectorSerializer.writeWordVectors(vec, "pathToWriteto.txt")
     // Prints out the closest 10 words to "day". An example on what to do with these Word Vectors.
     log.info("Closest Words:")
     val lst = vec.wordsNearest("day", 10)

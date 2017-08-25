@@ -56,7 +56,6 @@ object GravesLSTMCharModellingExample {
       val conf = new NeuralNetConfiguration.Builder()
         .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT).iterations(1)
         .learningRate(0.1)
-        .rmsDecay(0.95)
         .seed(12345)
         .regularization(true)
         .l2(0.001)
@@ -83,10 +82,10 @@ object GravesLSTMCharModellingExample {
 
       (0 until layers.length).foreach{i =>
         val nParams = layers(i).numParams
-        System.out.println("Number of parameters in layer " + i + ": " + nParams)
+        println("Number of parameters in layer " + i + ": " + nParams)
         totalNumParams += nParams
       }
-      System.out.println("Total number of network parameters: " + totalNumParams)
+      println("Total number of network parameters: " + totalNumParams)
 
       var miniBatchNumber = 0
       (0 until numEpochs).foreach{i =>
@@ -95,21 +94,21 @@ object GravesLSTMCharModellingExample {
           net.fit(ds)
           miniBatchNumber += 1
           if(miniBatchNumber % generateSamplesEveryNMinibatches == 0){
-            System.out.println("--------------------")
-            System.out.println("Completed " + miniBatchNumber + " minibatches of size " + miniBatchSize + "x" + exampleLength + " characters")
-            System.out.println("Sampling characters from network given initialization \"" + (if (generationInitialization == null) ""
+            println("--------------------")
+            println("Completed " + miniBatchNumber + " minibatches of size " + miniBatchSize + "x" + exampleLength + " characters")
+            println("Sampling characters from network given initialization \"" + (if (generationInitialization == null) ""
             else generationInitialization) + "\"")
             val samples = sampleCharactersFromNetwork(generationInitialization, net, iter, rng, nCharactersToSample, nSamplesToGenerate)
             samples.indices.foreach{j =>
-              System.out.println("----- Sample " + j + " -----")
-              System.out.println(samples(j))
-              System.out.println()
+              println("----- Sample " + j + " -----")
+              println(samples(j))
+              println()
             }
           }
         }
         iter.reset()
       }
-      System.out.println("\n\nExample complete")
+      println("\n\nExample complete")
     }
 
   /**
@@ -121,7 +120,7 @@ object GravesLSTMCharModellingExample {
   def  getShakespeareIterator(miniBatchSize: Int, sequenceLength: Int): CharacterIterator = {
       //The Complete Works of William Shakespeare
       val fileLocation = new ClassPathResource("character/Shakespeare.txt").getFile.getPath
-      System.out.println(fileLocation)
+      println(fileLocation)
 
       val validCharacters = CharacterIterator.getMinimalCharacterSet //Which characters are allowed? Others will be removed
 

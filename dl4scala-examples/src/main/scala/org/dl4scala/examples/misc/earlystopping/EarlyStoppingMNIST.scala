@@ -43,7 +43,7 @@ object EarlyStoppingMNIST {
       .weightInit(WeightInit.XAVIER)
       .activation(Activation.RELU)
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
-      .updater(Updater.NESTEROVS).momentum(0.9)
+      .updater(Updater.NESTEROVS)
       .list()
       .layer(0, new ConvolutionLayer.Builder(5, 5)
         .nIn(nChannels)
@@ -84,11 +84,11 @@ object EarlyStoppingMNIST {
 
     //Conduct early stopping training://Conduct early stopping training:
     val result = trainer.fit()
-    System.out.println("Termination reason: " + result.getTerminationReason)
-    System.out.println("Termination details: " + result.getTerminationDetails)
-    System.out.println("Total epochs: " + result.getTotalEpochs)
-    System.out.println("Best epoch number: " + result.getBestModelEpoch)
-    System.out.println("Score at best epoch: " + result.getBestModelScore)
+    println("Termination reason: " + result.getTerminationReason)
+    println("Termination details: " + result.getTerminationDetails)
+    println("Total epochs: " + result.getTotalEpochs)
+    println("Best epoch number: " + result.getBestModelEpoch)
+    println("Score at best epoch: " + result.getBestModelScore)
 
     //Print score vs. epoch
     val scoreVsEpoch = result.getScoreVsEpoch
@@ -97,7 +97,7 @@ object EarlyStoppingMNIST {
     Collections.sort(list)
     System.out.println("Score vs. Epoch:")
     for (i <- list.asScala) {
-      System.out.println(i + "\t" + scoreVsEpoch.get(i))
+      println(i + "\t" + scoreVsEpoch.get(i))
     }
   }
 }

@@ -1,10 +1,11 @@
 package org.dl4scala.examples.misc.activationfunctions
 
-import org.apache.commons.math3.util
 import org.nd4j.linalg.activations.BaseActivationFunction
 import org.nd4j.linalg.api.ndarray.INDArray
 import org.nd4j.linalg.api.ops.impl.transforms.Tanh
 import org.nd4j.linalg.factory.Nd4j
+import org.nd4j.linalg.primitives
+
 
 /**
   * This is an example of how to implement a custom activation function that does not take any learnable parameters
@@ -40,13 +41,13 @@ class CustomActivation extends BaseActivationFunction{
     * @param epsilon
     * @return
     */
-  override def backprop(in: INDArray, epsilon: INDArray): util.Pair[INDArray, INDArray] = {
+  override def backprop(in: INDArray, epsilon: INDArray): primitives.Pair[INDArray, INDArray] = {
     val dLdz: INDArray = Nd4j.getExecutioner.execAndReturn(new Tanh(in.muli(2 / 3.0)).derivative)
     dLdz.muli(2 / 3.0)
     dLdz.muli(1.7159)
 
     //Multiply with epsilon
     dLdz.muli(epsilon)
-    new util.Pair(dLdz, null)
+    new primitives.Pair(dLdz, null)
   }
 }

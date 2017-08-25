@@ -12,6 +12,7 @@ import org.dl4scala.examples.unsupervised.variational.plot.PlotUtil
 import org.dl4scala.examples.userInterface.util.GradientsAndParamsListener
 import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.api.ndarray.INDArray
+import org.nd4j.linalg.learning.config.Adam
 import org.nd4j.linalg.lossfunctions.LossFunctions
 import org.slf4j.LoggerFactory
 
@@ -62,8 +63,6 @@ object CenterLossLenetMnistExample {
       .weightInit(WeightInit.RELU)
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT)
       .updater(Updater.ADAM)
-      .adamMeanDecay(0.9)
-      .adamVarDecay(0.999)
       .list
       .layer(0, new ConvolutionLayer.Builder(5, 5).stride(1, 1).nOut(32).activation(Activation.LEAKYRELU).build)
       .layer(1, new SubsamplingLayer.Builder(SubsamplingLayer.PoolingType.MAX).kernelSize(2, 2).stride(2, 2).build)

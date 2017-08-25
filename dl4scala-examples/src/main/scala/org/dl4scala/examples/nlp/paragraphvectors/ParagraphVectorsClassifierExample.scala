@@ -81,7 +81,7 @@ class ParagraphVectorsClassifierExample {
           So, labels on these two documents are used like titles,
           just to visualize our classification done properly
       */
-      log.info("Document '" + document.getLabel + "' falls into the following categories: ")
+      log.info("Document '" + document.getLabels + "' falls into the following categories: ")
       for (score: (String, Double) <- scores.asScala) {
         log.info("        " + score._1 + ": " + score._2)
       }

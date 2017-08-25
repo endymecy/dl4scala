@@ -115,4 +115,6 @@ class CorpusIterator(corpus: ArrayBuffer[ArrayBuffer[Double]], batchSize: Int, b
   def nextMacroBatch(): Unit = {
     currentMacroBatch += 1
   }
+
+  override def getPreProcessor: MultiDataSetPreProcessor = null
 }

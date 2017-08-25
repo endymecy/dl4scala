@@ -68,7 +68,7 @@ object TrainNews extends App{
 
   // DataSetIterators for training and testing respectively
   // Using AsyncDataSetIterator to do data loading in a separate thread; this may improve performance vs. waiting for data to load
-  val wordVectors: WordVectors = WordVectorSerializer.loadStaticModel(new File(WORD_VECTORS_PATH))
+  val wordVectors: WordVectors = WordVectorSerializer.readWord2VecModel(new File(WORD_VECTORS_PATH))
 
   private var tokenizerFactory = new DefaultTokenizerFactory
   tokenizerFactory.setTokenPreProcessor(new CommonPreprocessor)

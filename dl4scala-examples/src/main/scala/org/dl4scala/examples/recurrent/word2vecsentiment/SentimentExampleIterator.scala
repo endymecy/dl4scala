@@ -83,8 +83,11 @@ class SentimentExampleIterator(dataDirectory: String, wordVectors: WordVectors, 
 
     // Create data for training
     // Here: we have reviews.size() examples of varying lengths
-    val features = Nd4j.create(reviews.size, vectorSize, maxLength)
-    val labels = Nd4j.create(reviews.size, 2, maxLength) //Two labels: positive or negative
+//    val features = Nd4j.create(reviews.size, vectorSize, maxLength)
+//    val labels = Nd4j.create(reviews.size, 2, maxLength) //Two labels: positive or negative
+
+    val features = Nd4j.create(Array[Int](reviews.size, vectorSize, maxLength), 'f')
+    val labels = Nd4j.create(Array[Int](reviews.size, 2, maxLength), 'f')
 
     // Because we are dealing with reviews of different lengths and only one output at the final time step: use padding arrays
     // Mask arrays contain 1 if data is present at that time step for that example, or 0 if data is just padding

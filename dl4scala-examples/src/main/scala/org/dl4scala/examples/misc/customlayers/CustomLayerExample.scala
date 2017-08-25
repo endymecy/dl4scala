@@ -7,7 +7,7 @@ import java.io.{File, IOException}
 import org.deeplearning4j.gradientcheck.GradientCheckUtil
 import org.deeplearning4j.nn.api.OptimizationAlgorithm
 import org.deeplearning4j.nn.conf.distribution.NormalDistribution
-import org.deeplearning4j.nn.conf.layers.{DenseLayer, OutputLayer}
+import org.deeplearning4j.nn.conf.layers.{BaseLayer, DenseLayer, OutputLayer}
 import org.deeplearning4j.nn.conf.{MultiLayerConfiguration, NeuralNetConfiguration, Updater}
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.nn.weights.WeightInit
@@ -16,6 +16,7 @@ import org.dl4scala.examples.misc.customlayers.layer.CustomLayer
 import org.nd4j.linalg.activations.Activation
 import org.nd4j.linalg.dataset.DataSet
 import org.nd4j.linalg.factory.Nd4j
+import org.nd4j.linalg.learning.config.RmsProp
 import org.nd4j.linalg.lossfunctions.LossFunctions
 
 import scala.util.Random
@@ -39,7 +40,7 @@ object CustomLayerExample {
 
     val config = new NeuralNetConfiguration.Builder()
       .optimizationAlgo(OptimizationAlgorithm.STOCHASTIC_GRADIENT_DESCENT).iterations(1)
-      .updater(Updater.RMSPROP).rmsDecay(0.95)
+      .updater( new RmsProp(0.95))
       .weightInit(WeightInit.XAVIER)
       .regularization(true).l2(0.03)
       .list()
@@ -54,10 +55,10 @@ object CustomLayerExample {
       .pretrain(false).backprop(true).build()
 
     //First:  run some basic sanity checks on the configuration:
-    val customLayerL2 = config.getConf(1).getLayer.getL2
+    val customLayerL2 = config.getConf(1).getLayer.asInstanceOf[BaseLayer].getL2
     System.out.println("l2 coefficient for custom layer: " + customLayerL2) //As expected: custom layer inherits the global L2 parameter configuration
 
-    val customLayerUpdater = config.getConf(1).getLayer.getUpdater
+    val customLayerUpdater = config.getConf(1).getLayer.asInstanceOf[BaseLayer].getIUpdater
     System.out.println("Updater for custom layer: " + customLayerUpdater) //As expected: custom layer inherits the global Updater configuration
 
     //Second: We need to ensure that that the JSON and YAML configuration works, with the custom layer
