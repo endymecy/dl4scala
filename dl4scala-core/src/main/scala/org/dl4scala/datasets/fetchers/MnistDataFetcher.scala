@@ -23,7 +23,7 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
   protected var oneIndexed = false
   protected var fOrder = false //MNIST is C order, EMNIST is F order
 
-  if (!mnistExists) new MnistFetcher().downloadAndUntar
+  if (!mnistExists) new MnistFetcher().downloadAndUntar()
   var images: String = _
   var labels: String = _
 
@@ -43,7 +43,7 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
   catch {
     case e: Exception =>
       FileUtils.deleteDirectory(new Nothing(MNIST_ROOT))
-      new MnistFetcher().downloadAndUntar
+      new MnistFetcher().downloadAndUntar()
       man = new MnistManager(images, labels, train)
   }
 
