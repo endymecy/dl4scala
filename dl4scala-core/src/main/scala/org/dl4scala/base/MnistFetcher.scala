@@ -21,9 +21,9 @@ class MnistFetcher {
   protected var FILE_DIR = new File(BASE_DIR, LOCAL_DIR_NAME)
   private var fileDir: File = _
 
-  def getName = "MNIST"
+  def getName: String = "MNIST"
 
-  def getBaseDir = FILE_DIR
+  def getBaseDir: File = FILE_DIR
 
   // --- Train files ---
 
@@ -112,7 +112,9 @@ class MnistFetcher {
     else if (isCorrectFile) {
       // do nothing, file downloaded
     }
-    else throw new IOException("Could not download " + url.getPath + "\n properly despite trying " + maxTries + " times, check your connection. File info:" + "\nTarget MD5: " + targetMD5 + "\nHash matches: " + checkMD5OfFile(targetMD5, f) + "\nIs valid file: " + f.isFile)
+    else throw new IOException("Could not download " + url.getPath + "\n properly despite trying "
+      + maxTries + " times, check your connection. File info:" + "\nTarget MD5: " + targetMD5 +
+      "\nHash matches: " + checkMD5OfFile(targetMD5, f) + "\nIs valid file: " + f.isFile)
   }
 
   @throws[IOException]
@@ -156,8 +158,7 @@ object MnistFetcher {
     val stdError = new BufferedReader(new InputStreamReader(p.getErrorStream))
     log.info("Here is the standard error of the command (if any):\n")
     var s: String = null
-    while ((s = stdError.readLine) != null)
-      log.info(s)
+    while ((s = stdError.readLine) != null) log.info(s)
     stdError.close()
   }
 }

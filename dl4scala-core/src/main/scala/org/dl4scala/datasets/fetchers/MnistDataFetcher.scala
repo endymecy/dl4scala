@@ -8,8 +8,9 @@ import org.dl4scala.base.MnistFetcher
 import org.dl4scala.datasets.mnist.MnistManager
 import org.dl4scala.util.MathUtils
 import org.nd4j.linalg.dataset.DataSet
-import org.nd4j.linalg.dataset.api.iterator.fetcher.BaseDataFetcher
 import org.nd4j.linalg.factory.Nd4j
+
+import scala.util.Random
 
 
 /**
@@ -19,7 +20,7 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
   import MnistDataFetcher._
   protected var man: MnistManager = _
   protected var order: Array[Int] = _
-  protected var rng = null
+  protected var rng: Random = _
   protected var oneIndexed = false
   protected var fOrder = false //MNIST is C order, EMNIST is F order
 
@@ -30,22 +31,37 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
   if (train) {
     images = MNIST_ROOT + MnistFetcher.trainingFilesFilename_unzipped
     labels = MNIST_ROOT + MnistFetcher.trainingFileLabelsFilename_unzipped
-    totalExamples = NUM_EXAMPLES
+    totalExamplesValue = NUM_EXAMPLES
   }
   else {
     images = MNIST_ROOT + MnistFetcher.testFilesFilename_unzipped
     labels = MNIST_ROOT + MnistFetcher.testFileLabelsFilename_unzipped
-    totalExamples = NUM_EXAMPLES_TEST
+    totalExamplesValue = NUM_EXAMPLES_TEST
   }
 
   try
     man = new MnistManager(images, labels, train)
   catch {
     case e: Exception =>
-      FileUtils.deleteDirectory(new Nothing(MNIST_ROOT))
+      FileUtils.deleteDirectory(new File(MNIST_ROOT))
       new MnistFetcher().downloadAndUntar()
       man = new MnistManager(images, labels, train)
   }
+
+  numOutcomes = 10
+  cursorValue = 0
+  inputColumnsValue = man.getImages.getEntryLength
+
+  if (train) order = new Array[Int](NUM_EXAMPLES)
+  else order = new Array[Int](NUM_EXAMPLES_TEST)
+
+  var i: Int = 0
+  while (i < order.length) {
+    order(i) = i
+    i += 1
+  }
+  rng = new Random(rngSeed)
+
 
   @throws(classOf[IOException])
   def this(binarize: Boolean) = this(binarize, true, true, System.currentTimeMillis())
@@ -65,10 +81,9 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
     var i = 0
     var break = false
     while (i < numExamples && !break) {
-      if (!hasMore)
-        break = true
+      if (!hasMore) break = true
 
-      var img = man.readImageUnsafe(order(cursor))
+      var img = man.readImageUnsafe(order(cursorValue))
       if (fOrder) {
         // EMNIST requires F order to C order//EMNIST requires F order to C order
         if (working == null) working = new Array[Byte](28 * 28)
@@ -81,7 +96,7 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
         working = temp
       }
 
-      var label = man.readLabel(order(cursor))
+      var label = man.readLabel(order(cursorValue))
       if (oneIndexed) { //For some inexplicable reason, Emnist LETTERS set is indexed 1 to 26 (i.e., 1 to nClasses), while everything else
         // is indexed (0 to nClasses-1) :/
         label -= 1
@@ -101,7 +116,7 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
       actualExamples += 1
 
       i = i + 1
-      cursor = cursor + 1
+      cursorValue = cursorValue + 1
     }
 
     if (actualExamples < numExamples) {
@@ -117,23 +132,23 @@ class MnistDataFetcher(binarize: Boolean, train: Boolean, shuffle: Boolean, rngS
   private def mnistExists(): Boolean = { //Check 4 files:
     var f = new File(MNIST_ROOT, MnistFetcher.trainingFilesFilename_unzipped)
     if (!f.exists) false
-    f = new Nothing(MNIST_ROOT, MnistFetcher.trainingFileLabelsFilename_unzipped)
+    f = new File(MNIST_ROOT, MnistFetcher.trainingFileLabelsFilename_unzipped)
     if (!f.exists) false
-    f = new Nothing(MNIST_ROOT, MnistFetcher.testFilesFilename_unzipped)
+    f = new File(MNIST_ROOT, MnistFetcher.testFilesFilename_unzipped)
     if (!f.exists) false
-    f = new Nothing(MNIST_ROOT, MnistFetcher.testFileLabelsFilename_unzipped)
+    f = new File(MNIST_ROOT, MnistFetcher.testFileLabelsFilename_unzipped)
     if (!f.exists) false
     true
   }
 
   override def reset(): Unit = {
-    cursor = 0
+    cursorValue = 0
     curr = null
     if (shuffle) MathUtils.shuffleArray(order, rng)
   }
 
-  override def next: DataSet = {
-    val next = super.next
+  override def next(): DataSet = {
+    val next = super.next()
     next
   }
 }

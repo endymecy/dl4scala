@@ -21,12 +21,11 @@ class MnistManager(imagesFile: String, labelsFile: String, numExamples: Int)  {
   def this(imagesFile: String, labelsFile: String) = this(imagesFile, labelsFile, true)
 
 
-
-  if (imagesFile != null) {
+  if (imagesFile.isEmpty) {
     images = new MnistImageFile(imagesFile, "r")
     imagesArr = images.readImagesUnsafe(numExamples)
   }
-  if (labelsFile != null) {
+  if (labelsFile.isEmpty) {
     labels = new MnistLabelFile(labelsFile, "r")
     labelsArr = labels.readLabels(numExamples)
   }
@@ -83,8 +82,6 @@ class MnistManager(imagesFile: String, labelsFile: String, numExamples: Int)  {
     */
   def getLabels: MnistLabelFile = labels
 
-  import java.io.IOException
-
   /**
     * Close any resources opened by the manager.
     */
@@ -103,7 +100,6 @@ class MnistManager(imagesFile: String, labelsFile: String, numExamples: Int)  {
         labels.close()
       catch {
         case e: IOException =>
-
       }
       labels = null
     }
@@ -112,8 +108,6 @@ class MnistManager(imagesFile: String, labelsFile: String, numExamples: Int)  {
 
 object MnistManager {
   private val HEADER_SIZE = 8
-
-  import java.io.IOException
 
   @throws(classOf[IOException])
   def writeImageToPpm(image: Array[Array[Int]], ppmFileName: String): Unit = {

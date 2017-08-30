@@ -23,18 +23,18 @@ object DataSets {
     }
   }
 
-  def iris(): DataSet = {
-    mnist(60000)
-  }
-
-  def iris(num : Int): DataSet = {
-    try {
-      val fetcher: IrisDataFetcher = new IrisDataFetcher()
-      fetcher.fetch(num)
-      fetcher.next()
-    } catch {
-      case e: Exception =>
-        throw new RuntimeException(e)
-    }
-  }
+//  def iris(): DataSet = {
+//    iris(60000)
+//  }
+//
+//  def iris(num : Int): DataSet = {
+//    try {
+//      val fetcher: IrisDataFetcher = new IrisDataFetcher()
+//      fetcher.fetch(num)
+//      fetcher.next()
+//    } catch {
+//      case e: Exception =>
+//        throw new RuntimeException(e)
+//    }
+//  }
 }

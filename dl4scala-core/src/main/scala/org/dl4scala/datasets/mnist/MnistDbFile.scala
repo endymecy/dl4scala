@@ -53,7 +53,7 @@ abstract class MnistDbFile(name: String, mode: String) extends RandomAccessFile(
     *
     * @return int
     */
-  def getEntryLength = 1
+  def getEntryLength: Int = 1
 
   /**
     * Move to the next entry.

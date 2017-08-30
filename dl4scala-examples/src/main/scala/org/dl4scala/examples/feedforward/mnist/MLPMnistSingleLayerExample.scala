@@ -1,8 +1,8 @@
 package org.dl4scala.examples.feedforward.mnist
 
+import org.dl4scala.datasets.iterator.impl.MnistDataSetIterator
 import org.slf4j.LoggerFactory
 import org.slf4j.Logger
-import org.deeplearning4j.datasets.iterator.impl.MnistDataSetIterator
 import org.deeplearning4j.eval.Evaluation
 import org.deeplearning4j.nn.multilayer.MultiLayerNetwork
 import org.deeplearning4j.optimize.listeners.ScoreIterationListener
@@ -74,7 +74,7 @@ object MLPMnistSingleLayerExample extends App{
   val eval = new Evaluation(outputNum) // create an evaluation object with 10 possible classes
 
   while(mnistTest.hasNext){
-    val next = mnistTest.next
+    val next = mnistTest.next()
     val output = model.output(next.getFeatureMatrix) // get the networks prediction
     eval.eval(next.getLabels, output) // check the prediction against the true class
   }

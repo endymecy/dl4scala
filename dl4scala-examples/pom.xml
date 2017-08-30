@@ -81,6 +81,12 @@
         </dependency>
 
         <dependency>
+            <groupId>org.dl4scala</groupId>
+            <artifactId>dl4scala-core</artifactId>
+            <version>0.1.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.deeplearning4j</groupId>
             <artifactId>deeplearning4j-nlp</artifactId>
             <version>${dl4j.version}</version>
